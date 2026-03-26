@@ -350,7 +350,6 @@
       border: 1px solid var(--line);
       background: var(--white);
     }
-    .tl-body > .fold:first-child { margin-top: 0; }
     .fold-head {
       width: 100%;
       display: flex;
@@ -500,7 +499,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.0</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.1</span>
       </h1>
       <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
       <ul class="hdr-chips" aria-label="行程重點">
@@ -512,7 +511,7 @@
   </header>
 
   <div class="kid-hero">
-    <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖。打開每一天的「詳細時間軸」，都會有<strong>早餐、上午行程、午餐、下午行程、住宿、晚餐</strong>六格；還沒決定的會寫<strong>未定</strong>喔～</p>
+    <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖。<strong>點開某一天</strong>，下面就會看到<strong>早餐、上午行程、午餐、下午行程、住宿、晚餐</strong>六格；還沒決定的會寫<strong>未定</strong>喔～</p>
   </div>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
@@ -542,12 +541,6 @@
             <span class="tl-sum">抵達仁川｜11:30 取車｜Starfield 江南｜夜宿河南</span>
           </button>
           <div class="tl-body">
-            <div class="fold open">
-              <button type="button" class="fold-head" aria-expanded="true">
-                <span class="fold-title">詳細時間軸</span>
-                <span class="fold-chev" aria-hidden="true">▶</span>
-              </button>
-              <div class="fold-panel">
                 <ul class="time-axis">
                   <li>
                     <span class="ta-when">早餐</span>
@@ -621,8 +614,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -640,13 +631,7 @@
             <span class="tl-sum">河南→春川｜樂高單日票｜15:20 入住｜晚餐春川炒雞</span>
           </button>
           <div class="tl-body">
-            <div class="fold">
-              <button type="button" class="fold-head" aria-expanded="false">
-                <span class="fold-title">詳細時間軸</span>
-                <span class="fold-chev" aria-hidden="true">▶</span>
-              </button>
-              <div class="fold-panel">
-                <p class="fold-lead"><strong>樂高單日票</strong>只用在今天；開園／閉園與排隊以現場為準。</p>
+                <p class="fold-lead" style="margin-top:0"><strong>樂高單日票</strong>只用在今天；開園／閉園與排隊以現場為準。</p>
                 <ul class="time-axis">
                   <li>
                     <span class="ta-when">早餐</span>
@@ -694,8 +679,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -712,13 +695,7 @@
             <span class="tl-sum">晚退房離樂高｜雪嶽山纜車（先吃再搭）｜入住束草海邊</span>
           </button>
           <div class="tl-body">
-            <div class="fold">
-              <button type="button" class="fold-head" aria-expanded="false">
-                <span class="fold-title">詳細時間軸</span>
-                <span class="fold-chev" aria-hidden="true">▶</span>
-              </button>
-              <div class="fold-panel">
-                <p class="fold-lead">纜車可能要排隊；風太大可能停開，爸媽會看現場。</p>
+                <p class="fold-lead" style="margin-top:0">纜車可能要排隊；風太大可能停開，爸媽會看現場。</p>
                 <ul class="time-axis">
                   <li>
                     <span class="ta-when">早餐</span>
@@ -766,8 +743,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -784,13 +759,7 @@
             <span class="tl-sum">束草東海岸｜續住同飯店｜豆豆生日 🎂</span>
           </button>
           <div class="tl-body">
-            <div class="fold">
-              <button type="button" class="fold-head" aria-expanded="false">
-                <span class="fold-title">詳細時間軸</span>
-                <span class="fold-chev" aria-hidden="true">▶</span>
-              </button>
-              <div class="fold-panel">
-                <p class="fold-lead">今天<strong>沒有飯店摺頁</strong>（跟 7/2 同一間，續住中）。</p>
+                <p class="fold-lead" style="margin-top:0">今天<strong>沒有飯店摺頁</strong>（跟 7/2 同一間，續住中）。</p>
                 <ul class="time-axis">
                   <li>
                     <span class="ta-when">早餐</span>
@@ -829,8 +798,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -848,13 +815,7 @@
             <span class="tl-sum">退房｜開回仁川｜16:00 前還車｜飛回台灣</span>
           </button>
           <div class="tl-body">
-            <div class="fold">
-              <button type="button" class="fold-head" aria-expanded="false">
-                <span class="fold-title">詳細時間軸</span>
-                <span class="fold-chev" aria-hidden="true">▶</span>
-              </button>
-              <div class="fold-panel">
-                <p class="fold-lead">早上<strong>退房</strong>。<strong>租車細節只在 6/30 取車那格列過一次</strong>；今天照時間還車、搭機。</p>
+                <p class="fold-lead" style="margin-top:0">早上<strong>退房</strong>。<strong>租車細節只在 6/30 取車那格列過一次</strong>；今天照時間還車、搭機。</p>
                 <ul class="time-axis">
                   <li>
                     <span class="ta-when">早餐</span>
@@ -906,8 +867,6 @@
                     </div>
                   </li>
                 </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -929,7 +888,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.0";
+      var VERSION = "1.15.1";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
