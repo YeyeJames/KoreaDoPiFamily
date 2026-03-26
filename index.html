@@ -412,7 +412,7 @@
     }
     ul.time-axis li {
       display: grid;
-      grid-template-columns: minmax(6.75rem, 8.75rem) 1fr;
+      grid-template-columns: minmax(7.25rem, 10rem) 1fr;
       gap: 0.35rem 0.65rem;
       padding: 0.55rem 0;
       border-bottom: 1px dashed var(--line);
@@ -500,7 +500,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.14.1</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.0</span>
       </h1>
       <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
       <ul class="hdr-chips" aria-label="行程重點">
@@ -512,7 +512,7 @@
   </header>
 
   <div class="kid-hero">
-    <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖，點日期可以看當天要做什麼喔～</p>
+    <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖。打開每一天的「詳細時間軸」，都會有<strong>早餐、上午行程、午餐、下午行程、住宿、晚餐</strong>六格；還沒決定的會寫<strong>未定</strong>喔～</p>
   </div>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
@@ -550,9 +550,15 @@
               <div class="fold-panel">
                 <ul class="time-axis">
                   <li>
-                    <span class="ta-when">抵達</span>
+                    <span class="ta-when">早餐</span>
                     <div class="ta-detail">
-                      <p>飛到韓國<strong>仁川機場</strong>，跟爸媽一起入境、領行李。</p>
+                      <p><strong>未定</strong>（視班機與抵達時間：機上簡餐或抵達後再說）。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">上午行程</span>
+                    <div class="ta-detail">
+                      <p>抵達<strong>仁川機場</strong>，入境、領行李；<strong>11:30 取車</strong>後開往首爾方向。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">去程班機（長榮 BR）</span>
@@ -566,12 +572,6 @@
                           </ul>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="ta-when">11:30</span>
-                    <div class="ta-detail">
-                      <p>在機場<strong>取車</strong>（休旅車），接下來幾天開車玩。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">租車重點（全程只列這裡）</span>
@@ -588,15 +588,21 @@
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">中午起</span>
+                    <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p>開車到<strong>Starfield 江南</strong>大百貨：<strong>午餐</strong>、逛街、<strong>三樓運動天地</strong>。</p>
+                      <p><strong>Starfield 江南</strong>大百貨館內用餐。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">晚上</span>
+                    <span class="ta-when">下午行程</span>
                     <div class="ta-detail">
-                      <p><strong>晚餐</strong>看體力（館內／外帶／回飯店外賣），然後回飯店睡覺。</p>
+                      <p>館內逛街、<strong>三樓運動天地</strong>。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">住宿</span>
+                    <div class="ta-detail">
+                      <p>今晚住<strong>河南 Aloha Hotel</strong>（入住日才列摺頁）。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">今晚住宿｜河南 Aloha Hotel</span>
@@ -606,6 +612,12 @@
                           <p class="fold-lead" style="margin:0">首爾近郊<strong>河南市</strong>，<strong>兩間房</strong>一家人，可停車；明天一早退房往春川。</p>
                         </div>
                       </div>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">晚餐</span>
+                    <div class="ta-detail">
+                      <p><strong>未定</strong>：館內／外帶回飯店／先 check-in 再叫外賣，看當天體力。</p>
                     </div>
                   </li>
                 </ul>
@@ -637,66 +649,48 @@
                 <p class="fold-lead"><strong>樂高單日票</strong>只用在今天；開園／閉園與排隊以現場為準。</p>
                 <ul class="time-axis">
                   <li>
-                    <span class="ta-when">07:00–08:30</span>
+                    <span class="ta-when">早餐</span>
                     <div class="ta-detail">
-                      <p>起床；河南飯店<strong>早餐</strong>，行李收好。</p>
+                      <p>河南飯店<strong>早餐</strong>（或簡單吃），行李收好。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">08:30–09:30</span>
+                    <span class="ta-when">上午行程</span>
                     <div class="ta-detail">
-                      <p><strong>退房</strong>（可問飯店能否提早）；愈早出發，樂高玩愈久。</p>
+                      <p><strong>退房</strong>（可問能否提早）→ <strong>開車</strong> 河南→春川（約 1.5–2.5h）→ <strong>停車</strong>、飯店<strong>寄行李</strong> → 持<strong>單日票進樂高</strong>開玩。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">路上</span>
+                    <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p><strong>開車</strong> 河南 → 春川樂高，約 <strong>1.5–2.5 小時</strong>（看路況）。</p>
+                      <p>樂高園內<strong>簡餐或輪流吃</strong>。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">抵達後</span>
+                    <span class="ta-when">下午行程</span>
                     <div class="ta-detail">
-                      <p><strong>停車</strong>；到樂高飯店<strong>寄放行李</strong>，再進園玩。</p>
+                      <p>繼續玩樂高；<strong>14:30–14:45 出園</strong>，約 <strong>15:00 前</strong>回飯店大廳準備入住。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">園內</span>
+                    <span class="ta-when">住宿</span>
                     <div class="ta-detail">
-                      <p>持<strong>單日票</strong>玩樂高；午餐園內<strong>簡餐或輪流吃</strong>。</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="ta-when">14:30–14:45</span>
-                    <div class="ta-detail">
-                      <p><strong>出園</strong>回飯店大廳，目標 <strong>15:00 前</strong>到。</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="ta-when">15:20</span>
-                    <div class="ta-detail">
-                      <p><strong>入住</strong>樂高度假飯店，進房休息。</p>
+                      <p><strong>15:20 入住</strong>樂高度假飯店（入住日才列摺頁）。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">今晚住宿｜LEGOLAND Korea Resort Hotel</span>
                           <span class="fold-chev" aria-hidden="true">▶</span>
                         </button>
                         <div class="fold-panel">
-                          <p class="fold-lead" style="margin:0">在<strong>樂園旁邊</strong>；房間可能是<strong>忍者／海盜／城堡</strong>主題其中一種。含<strong>早餐</strong>，明天早餐後往束草（<strong>7/2 不再進樂高</strong>）。</p>
+                          <p class="fold-lead" style="margin:0">在<strong>樂園旁邊</strong>；房間可能是<strong>忍者／海盜／城堡</strong>主題其中一種。含<strong>早餐</strong>；<strong>7/2 不再進樂高</strong>。</p>
                         </div>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">傍晚</span>
+                    <span class="ta-when">晚餐</span>
                     <div class="ta-detail">
-                      <p><strong>開車外出</strong>吃<strong>春川辣炒雞排（닭갈비）</strong>（例如明洞辣炒雞排街一帶）。</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="ta-when">晚上</span>
-                    <div class="ta-detail">
-                      <p>回飯店休息；單日票若不能當天再進園，就不回樂高。</p>
+                      <p><strong>開車外出</strong>吃<strong>春川辣炒雞排（닭갈비）</strong>（如明洞辣炒雞排街一帶）；餐廳<strong>未定</strong>當天再選。餐後回飯店休息（單日票若不能再入園就不回樂高）。</p>
                     </div>
                   </li>
                 </ul>
@@ -727,33 +721,33 @@
                 <p class="fold-lead">纜車可能要排隊；風太大可能停開，爸媽會看現場。</p>
                 <ul class="time-axis">
                   <li>
-                    <span class="ta-when">上午</span>
+                    <span class="ta-when">早餐</span>
                     <div class="ta-detail">
-                      <p><strong>睡飽一點</strong>；飯店<strong>早餐</strong>後整理；<strong>晚一點退房</strong>（不再進樂高）。</p>
+                      <p>樂高飯店<strong>早餐</strong>。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">路上</span>
+                    <span class="ta-when">上午行程</span>
                     <div class="ta-detail">
-                      <p><strong>開車</strong>往束草／<strong>雪嶽山纜車</strong>（車程看導航）。</p>
+                      <p><strong>睡飽、晚一點退房</strong>（不再進樂高）→ <strong>開車</strong>往束草／<strong>雪嶽山纜車</strong>（車程看導航）。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">中午</span>
+                    <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p>到纜車站附近，先在<strong>站區吃小吃、輕食</strong>。</p>
+                      <p>纜車站周邊<strong>小吃、輕食</strong>。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">下午</span>
+                    <span class="ta-when">下午行程</span>
                     <div class="ta-detail">
-                      <p><strong>搭纜車</strong>上山看風景（排隊與購票依現場）。</p>
+                      <p><strong>搭纜車</strong>（排隊／購票依現場）→ 再<strong>開車往束草</strong>。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">傍晚</span>
+                    <span class="ta-when">住宿</span>
                     <div class="ta-detail">
-                      <p>開車到<strong>束草海邊飯店</strong>辦<strong>入住</strong>；晚餐附近或外帶。</p>
+                      <p>今晚起住<strong>Cassia Sokcho</strong>（入住日才列摺頁）。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">今晚起住宿｜Cassia Sokcho（入住日才列）</span>
@@ -763,6 +757,12 @@
                           <p class="fold-lead" style="margin:0"><strong>大浦港</strong>旁，像小公寓：<strong>客廳＋兩間臥室</strong>，連住到 <strong>7/4 早上退房</strong>。續住日不再重複列飯店摺頁。</p>
                         </div>
                       </div>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">晚餐</span>
+                    <div class="ta-detail">
+                      <p><strong>未定</strong>（束草海邊附近或外帶，當天再決定）。</p>
                     </div>
                   </li>
                 </ul>
@@ -793,27 +793,39 @@
                 <p class="fold-lead">今天<strong>沒有飯店摺頁</strong>（跟 7/2 同一間，續住中）。</p>
                 <ul class="time-axis">
                   <li>
-                    <span class="ta-when">早上</span>
+                    <span class="ta-when">早餐</span>
                     <div class="ta-detail">
-                      <p>飯店慢慢吃早餐，不用搬行李換飯店。</p>
+                      <p>飯店早餐（或簡餐）。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">白天</span>
+                    <span class="ta-when">上午行程</span>
                     <div class="ta-detail">
-                      <p><strong>束草／東海岸</strong>：海邊散步、市場、想玩的點由爸媽安排。</p>
+                      <p><strong>未定</strong>：束草／東海岸活動（海邊、市場等，爸媽安排）。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">今天特別</span>
+                    <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p><strong>豆豆生日</strong>—晚餐或蛋糕交給爸媽安排，開心當主角！</p>
+                      <p><strong>未定</strong>。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">晚上</span>
+                    <span class="ta-when">下午行程</span>
                     <div class="ta-detail">
-                      <p>回同一間海邊飯店休息。</p>
+                      <p><strong>未定</strong>：續玩東海岸；今天是<strong>豆豆生日 🎂</strong>，可排小驚喜。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">住宿</span>
+                    <div class="ta-detail">
+                      <p><strong>續住</strong>同一間束草海邊飯店（無新摺頁）。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">晚餐</span>
+                    <div class="ta-detail">
+                      <p><strong>未定</strong>（生日餐／蛋糕由爸媽安排）。</p>
                     </div>
                   </li>
                 </ul>
@@ -842,24 +854,30 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p class="fold-lead">今天<strong>沒有飯店摺頁</strong>（早上退房）。<strong>租車細節只在 6/30 取車那格列過一次</strong>，這天照時間還車即可。</p>
+                <p class="fold-lead">早上<strong>退房</strong>。<strong>租車細節只在 6/30 取車那格列過一次</strong>；今天照時間還車、搭機。</p>
                 <ul class="time-axis">
                   <li>
-                    <span class="ta-when">早上</span>
+                    <span class="ta-when">早餐</span>
                     <div class="ta-detail">
-                      <p><strong>退房</strong>，從束草<strong>早早出發</strong>往仁川機場（車程很長，路上休息）。</p>
+                      <p>飯店早餐或<strong>簡單吃</strong>（要早出發）。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">16:00 前</span>
+                    <span class="ta-when">上午行程</span>
                     <div class="ta-detail">
-                      <p>到<strong>仁川機場</strong>跟爸媽<strong>還車</strong>（跟 6/30 取車<strong>同一地點</strong>），再去辦登機。</p>
+                      <p><strong>退房</strong>，從束草<strong>早早出發</strong>往仁川機場（車程長，中途休息）。</p>
                     </div>
                   </li>
                   <li>
-                    <span class="ta-when">稍後</span>
+                    <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p><strong>搭飛機回台灣</strong>（桃園）。</p>
+                      <p><strong>未定</strong>（休息站或路上簡餐）。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">下午行程</span>
+                    <div class="ta-detail">
+                      <p><strong>16:00 前</strong>到<strong>仁川機場還車</strong>（與 6/30 取車<strong>同一地點</strong>）→ 辦登機 → <strong>搭飛機回台灣</strong>。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
                           <span class="fold-title">回程班機（長榮 BR）</span>
@@ -873,6 +891,18 @@
                           </ul>
                         </div>
                       </div>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">住宿</span>
+                    <div class="ta-detail">
+                      <p><strong>本日無飯店住宿</strong>（抵達台灣後回家）。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="ta-when">晚餐</span>
+                    <div class="ta-detail">
+                      <p><strong>未定</strong>（班機上簡餐或到家再吃）。</p>
                     </div>
                   </li>
                 </ul>
@@ -899,7 +929,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.14.1";
+      var VERSION = "1.15.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
