@@ -179,19 +179,54 @@
     }
     .tl-item.open .tl-body { display: block; }
 
-    .day-block {
-      margin-top: 1rem;
-      padding: 0.85rem 0.95rem;
-      background: var(--cream);
+    /* 預設收合：機票／租車／住宿等細節 */
+    .fold {
+      margin-top: 0.65rem;
       border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .tl-body > .fold:first-child { margin-top: 0; }
+    .fold-head {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 0.95rem;
+      min-height: var(--tap);
+      background: var(--cream);
+      border: none;
+      font: inherit;
+      font-weight: 800;
+      font-size: clamp(1rem, 3.2vw, 1.12rem);
+      color: #9a3412;
+      text-align: left;
+      cursor: pointer;
       border-left: 4px solid var(--orange-strong);
     }
-    .day-block:first-child { margin-top: 0; }
-    .day-block h3 {
-      margin: 0 0 0.55rem;
-      font-size: clamp(1rem, 3.2vw, 1.12rem);
-      font-weight: 800;
-      color: #9a3412;
+    .fold.open > .fold-head { background: var(--orange-soft); }
+    .fold-head:active { filter: brightness(0.98); }
+    .fold-title { flex: 1; line-height: 1.35; }
+    .fold-chev {
+      flex-shrink: 0;
+      color: var(--orange-strong);
+      transition: transform 0.2s;
+      font-size: 0.85rem;
+    }
+    .fold.open .fold-chev { transform: rotate(90deg); }
+    .fold-panel {
+      display: none;
+      padding: 0.75rem 0.95rem 0.95rem;
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+    .fold.open .fold-panel { display: block; }
+    .fold-lead {
+      margin: 0 0 0.65rem;
+      font-size: var(--fs-small);
+      color: var(--ink-muted);
     }
     dl.info { margin: 0; }
     dl.info dt {
@@ -282,7 +317,7 @@
 </head>
 <body>
   <header>
-    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.4.0</span></h1>
+    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.4.1</span></h1>
   </header>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
@@ -307,118 +342,138 @@
             <span class="tl-sum">抵達仁川 ICN｜11:30 取車後直達 Starfield 江南｜夜宿河南市</span>
           </button>
           <div class="tl-body">
-            <div class="day-block">
-              <h3>航空（長榮 BR）</h3>
-              <dl class="info">
-                <dt>航路</dt>
-                <dd>台北桃園 TPE → 首爾仁川 ICN</dd>
-                <dt>去程日期</dt>
-                <dd>2026-06-30（當日抵達）</dd>
-                <dt>回程日期</dt>
-                <dd>2026-07-04，ICN → TPE（當日抵達）</dd>
-                <dt>艙等代碼</dt>
-                <dd>CABCLASS=T</dd>
-                <dt>同行旅客</dt>
-                <dd>
-                  <ul class="plain">
-                    <li>WANG CHIACHIN</li>
-                    <li>WU HENGYOU</li>
-                    <li>WU HENGYU</li>
-                    <li>WU WEICHE</li>
-                  </ul>
-                </dd>
-                <dt>訂位參考</dt>
-                <dd class="copy-row">
-                  <code>TPEBR08VB</code>
-                  <button type="button" class="copy" data-copy="TPEBR08VB">複製</button>
-                </dd>
-              </dl>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">航空（長榮 BR）</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <dl class="info">
+                  <dt>航路</dt>
+                  <dd>台北桃園 TPE → 首爾仁川 ICN</dd>
+                  <dt>去程日期</dt>
+                  <dd>2026-06-30（當日抵達）</dd>
+                  <dt>回程日期</dt>
+                  <dd>2026-07-04，ICN → TPE（當日抵達）</dd>
+                  <dt>艙等代碼</dt>
+                  <dd>CABCLASS=T</dd>
+                  <dt>同行旅客</dt>
+                  <dd>
+                    <ul class="plain">
+                      <li>WANG CHIACHIN</li>
+                      <li>WU HENGYOU</li>
+                      <li>WU HENGYU</li>
+                      <li>WU WEICHE</li>
+                    </ul>
+                  </dd>
+                  <dt>訂位參考</dt>
+                  <dd class="copy-row">
+                    <code>TPEBR08VB</code>
+                    <button type="button" class="copy" data-copy="TPEBR08VB">複製</button>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            <div class="day-block">
-              <h3>租車（樂天 LOTTE）</h3>
-              <dl class="info">
-                <dt>預約編號</dt>
-                <dd class="copy-row">
-                  <strong>2622209071</strong>
-                  <button type="button" class="copy" data-copy="2622209071">複製</button>
-                </dd>
-                <dt>取車</dt>
-                <dd>2026-06-30 <strong>11:30</strong>｜仁川機場 <strong>T1</strong> West｜營業 06:00–20:00</dd>
-                <dt>還車</dt>
-                <dd>2026-07-04 <strong>16:00</strong>（同地點）</dd>
-                <dt>車種／保險／加購</dt>
-                <dd>SUV｜CDW（0 KRW 自負額）｜Hi-Pass（ETC）預付卡</dd>
-                <dt>總額（確認信）</dt>
-                <dd><strong>756,400 KRW</strong></dd>
-                <dt>確認</dt>
-                <dd class="copy-row">
-                  yeyelocos@gmail.com（WU WEI CHE）
-                  <button type="button" class="copy" data-copy="yeyelocos@gmail.com">複製信箱</button>
-                </dd>
-                <dt>地址</dt>
-                <dd class="copy-row">
-                  <span>Incheon International Airport T1, 2851 Unseo-dong, Jung-gu, Incheon</span>
-                  <button type="button" class="copy" data-copy="Incheon International Airport Terminal 1, 2851 Unseo-dong, Jung-gu, Incheon, Korea">複製</button>
-                </dd>
-                <dt>付款／文件</dt>
-                <dd>信用卡或金融卡（不收現金）｜護照、國際駕照 IDP 等</dd>
-                <dt>客服</dt>
-                <dd class="copy-row">
-                  +82-2-1588-1230
-                  <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
-                </dd>
-              </dl>
-              <div class="hint">取車後<strong>直接開車</strong>往當日行程第一站。</div>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">租車（樂天 LOTTE）</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <dl class="info">
+                  <dt>預約編號</dt>
+                  <dd class="copy-row">
+                    <strong>2622209071</strong>
+                    <button type="button" class="copy" data-copy="2622209071">複製</button>
+                  </dd>
+                  <dt>取車</dt>
+                  <dd>2026-06-30 <strong>11:30</strong>｜仁川機場 <strong>T1</strong> West｜營業 06:00–20:00</dd>
+                  <dt>還車</dt>
+                  <dd>2026-07-04 <strong>16:00</strong>（同地點）</dd>
+                  <dt>車種／保險／加購</dt>
+                  <dd>SUV｜CDW（0 KRW 自負額）｜Hi-Pass（ETC）預付卡</dd>
+                  <dt>總額（確認信）</dt>
+                  <dd><strong>756,400 KRW</strong></dd>
+                  <dt>確認</dt>
+                  <dd class="copy-row">
+                    yeyelocos@gmail.com（WU WEI CHE）
+                    <button type="button" class="copy" data-copy="yeyelocos@gmail.com">複製信箱</button>
+                  </dd>
+                  <dt>地址</dt>
+                  <dd class="copy-row">
+                    <span>Incheon International Airport T1, 2851 Unseo-dong, Jung-gu, Incheon</span>
+                    <button type="button" class="copy" data-copy="Incheon International Airport Terminal 1, 2851 Unseo-dong, Jung-gu, Incheon, Korea">複製</button>
+                  </dd>
+                  <dt>付款／文件</dt>
+                  <dd>信用卡或金融卡（不收現金）｜護照、國際駕照 IDP 等</dd>
+                  <dt>客服</dt>
+                  <dd class="copy-row">
+                    +82-2-1588-1230
+                    <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
+                  </dd>
+                </dl>
+                <div class="hint">取車後<strong>直接開車</strong>往當日行程第一站。</div>
+              </div>
             </div>
-            <div class="day-block">
-              <h3>當日行程（租車後）</h3>
-              <dl class="info">
-                <dt>地點</dt>
-                <dd class="copy-row">
-                  <strong>Starfield 江南</strong>（스타필드 코엑스몰，首爾江南區 COEX／삼성站一帶）
-                  <button type="button" class="copy" data-copy="스타필드 코엑스몰">複製韓文名</button>
-                </dd>
-                <dt>午餐</dt>
-                <dd>抵達商場後於館內用餐。</dd>
-                <dt>下午</dt>
-                <dd>商場內逛街；至<strong>三樓運動天地</strong>遊玩。</dd>
-                <dt>晚餐（視體力彈性）</dt>
-                <dd>
-                  <ul class="plain" style="margin-top:0.25rem">
-                    <li>商場內用餐，或</li>
-                    <li>買餐點帶回旅館，或</li>
-                    <li>先至河南飯店 <strong>check-in</strong> 休息，再<strong>叫外賣</strong>回飯店吃</li>
-                  </ul>
-                </dd>
-              </dl>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">當日行程（租車後）</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <dl class="info">
+                  <dt>地點</dt>
+                  <dd class="copy-row">
+                    <strong>Starfield 江南</strong>（스타필드 코엑스몰，首爾江南區 COEX／삼성站一帶）
+                    <button type="button" class="copy" data-copy="스타필드 코엑스몰">複製韓文名</button>
+                  </dd>
+                  <dt>午餐</dt>
+                  <dd>抵達商場後於館內用餐。</dd>
+                  <dt>下午</dt>
+                  <dd>商場內逛街；至<strong>三樓運動天地</strong>遊玩。</dd>
+                  <dt>晚餐（視體力彈性）</dt>
+                  <dd>
+                    <ul class="plain" style="margin-top:0.25rem">
+                      <li>商場內用餐，或</li>
+                      <li>買餐點帶回旅館，或</li>
+                      <li>先至河南飯店 <strong>check-in</strong> 休息，再<strong>叫外賣</strong>回飯店吃</li>
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            <div class="day-block">
-              <h3>住宿｜河南 Aloha Hotel</h3>
-              <p style="margin:0 0 0.5rem;font-size:var(--fs-small);color:var(--ink-muted)">入住 6/30 → 退房 7/1（京畿道河南市）</p>
-              <dl class="info">
-                <dt>韓文</dt>
-                <dd>하남 알로하호텔</dd>
-                <dt>訂房</dt>
-                <dd>Agoda <strong>1710882041</strong>｜Booking.com 5719023907（給飯店）</dd>
-                <dt>房型</dt>
-                <dd>Superior Double × 2 間（相鄰房、停車場）</dd>
-                <dt>人數（訂單）</dt>
-                <dd>4 成人</dd>
-                <dt>電話</dt>
-                <dd class="copy-row">
-                  +82-10-4952-5222
-                  <button type="button" class="copy" data-copy="+82-10-4952-5222">複製</button>
-                </dd>
-                <dt>地址</dt>
-                <dd class="copy-row">
-                  84, hanam-daero 776beon-gil, Hanam-si, Gyeonggi-do, 12947
-                  <button type="button" class="copy" data-copy="84, hanam-daero 776beon-gil, Sinjang-dong, Hanam-si, Gyeonggi-do, 12947, Korea">複製</button>
-                </dd>
-                <dt>含</dt>
-                <dd>Wi-Fi、停車</dd>
-                <dt>付款／取消</dt>
-                <dd>預計 2026-06-27 台幣扣款，參考 KRW 165,020｜6/29 前免費取消</dd>
-              </dl>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">住宿｜河南 Aloha Hotel</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <p class="fold-lead">入住 6/30 → 退房 7/1（京畿道河南市）</p>
+                <dl class="info">
+                  <dt>韓文</dt>
+                  <dd>하남 알로하호텔</dd>
+                  <dt>訂房</dt>
+                  <dd>Agoda <strong>1710882041</strong>｜Booking.com 5719023907（給飯店）</dd>
+                  <dt>房型</dt>
+                  <dd>Superior Double × 2 間（相鄰房、停車場）</dd>
+                  <dt>人數（訂單）</dt>
+                  <dd>4 成人</dd>
+                  <dt>電話</dt>
+                  <dd class="copy-row">
+                    +82-10-4952-5222
+                    <button type="button" class="copy" data-copy="+82-10-4952-5222">複製</button>
+                  </dd>
+                  <dt>地址</dt>
+                  <dd class="copy-row">
+                    84, hanam-daero 776beon-gil, Hanam-si, Gyeonggi-do, 12947
+                    <button type="button" class="copy" data-copy="84, hanam-daero 776beon-gil, Sinjang-dong, Hanam-si, Gyeonggi-do, 12947, Korea">複製</button>
+                  </dd>
+                  <dt>含</dt>
+                  <dd>Wi-Fi、停車</dd>
+                  <dt>付款／取消</dt>
+                  <dd>預計 2026-06-27 台幣扣款，參考 KRW 165,020｜6/29 前免費取消</dd>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
@@ -433,36 +488,41 @@
             <span class="tl-sum">河南出發往春川｜夜宿樂高樂園韓國度假飯店</span>
           </button>
           <div class="tl-body">
-            <p style="margin:0 0 1rem">自駕前往春川；依路況安排休息與 Check-in。</p>
-            <div class="day-block">
-              <h3>住宿｜LEGOLAND Korea Resort Hotel</h3>
-              <p style="margin:0 0 0.5rem;font-size:var(--fs-small);color:var(--ink-muted)">入住 7/1 → 退房 7/2（江原道春川）</p>
-              <dl class="info">
-                <dt>韓文</dt>
-                <dd>레고랜드 코리아 리조트</dd>
-                <dt>訂房</dt>
-                <dd>參照 266683535739112｜訂單 1699823143</dd>
-                <dt>房型</dt>
-                <dd>高級客房（忍者／海盜／王國主題隨機）</dd>
-                <dt>人數</dt>
-                <dd>2 成人、2 兒童｜1 房</dd>
-                <dt>住客（確認單）</dt>
-                <dd>WEI-CHE WU</dd>
-                <dt>電話</dt>
-                <dd class="copy-row">
-                  +82-33-815-2300
-                  <button type="button" class="copy" data-copy="+82-33-815-2300">複製</button>
-                </dd>
-                <dt>地址</dt>
-                <dd class="copy-row">
-                  128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240
-                  <button type="button" class="copy" data-copy="128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240, Korea">複製</button>
-                </dd>
-                <dt>含</dt>
-                <dd>停車、Wi-Fi、早餐</dd>
-                <dt>付款／取消</dt>
-                <dd>預計 2026-04-09 台幣扣款，參考 USD 184.54｜4/11 前免費取消</dd>
-              </dl>
+            <p style="margin:0 0 0.85rem;font-size:var(--fs-small);color:var(--ink-muted)">自駕前往春川；依路況安排休息與 Check-in。</p>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">住宿｜LEGOLAND Korea Resort Hotel</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <p class="fold-lead">入住 7/1 → 退房 7/2（江原道春川）</p>
+                <dl class="info">
+                  <dt>韓文</dt>
+                  <dd>레고랜드 코리아 리조트</dd>
+                  <dt>訂房</dt>
+                  <dd>參照 266683535739112｜訂單 1699823143</dd>
+                  <dt>房型</dt>
+                  <dd>高級客房（忍者／海盜／王國主題隨機）</dd>
+                  <dt>人數</dt>
+                  <dd>2 成人、2 兒童｜1 房</dd>
+                  <dt>住客（確認單）</dt>
+                  <dd>WEI-CHE WU</dd>
+                  <dt>電話</dt>
+                  <dd class="copy-row">
+                    +82-33-815-2300
+                    <button type="button" class="copy" data-copy="+82-33-815-2300">複製</button>
+                  </dd>
+                  <dt>地址</dt>
+                  <dd class="copy-row">
+                    128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240
+                    <button type="button" class="copy" data-copy="128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240, Korea">複製</button>
+                  </dd>
+                  <dt>含</dt>
+                  <dd>停車、Wi-Fi、早餐</dd>
+                  <dt>付款／取消</dt>
+                  <dd>預計 2026-04-09 台幣扣款，參考 USD 184.54｜4/11 前免費取消</dd>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
@@ -477,37 +537,42 @@
             <span class="tl-sum">春川往束草｜入住 Cassia Sokcho（兩晚）</span>
           </button>
           <div class="tl-body">
-            <p style="margin:0 0 1rem">自駕前往束草，可排沿途景點。</p>
-            <div class="day-block">
-              <h3>住宿｜Cassia Sokcho</h3>
-              <p style="margin:0 0 0.5rem;font-size:var(--fs-small);color:var(--ink-muted)">入住 7/2 → 退房 7/4（共兩晚）</p>
-              <dl class="info">
-                <dt>韓文</dt>
-                <dd>카시아 속초</dd>
-                <dt>Agoda</dt>
-                <dd><strong>1699830242</strong></dd>
-                <dt>房型</dt>
-                <dd>Two Bedroom Suite × 1 套</dd>
-                <dt>人數（訂單）</dt>
-                <dd>4 成人</dd>
-                <dt>住客（確認單）</dt>
-                <dd>WEI-CHE WU</dd>
-                <dt>電話</dt>
-                <dd class="copy-row">
-                  +82-33-680-8888
-                  <button type="button" class="copy" data-copy="+82-33-680-8888">複製</button>
-                </dd>
-                <dt>地址</dt>
-                <dd class="copy-row">
-                  120 Daepohanghuimang-gil, Sokcho-si, Gangwon-do, 24901
-                  <button type="button" class="copy" data-copy="120 Daepohanghuimang-gil, Daepo-dong, Sokcho-si, Gangwon-do, 24901, Korea">複製</button>
-                </dd>
-                <dt>含</dt>
-                <dd>停車、Wi-Fi、雙人早餐（兒童早餐依現場）</dd>
-                <dt>付款／取消</dt>
-                <dd>預計 2026-06-25 台幣扣款，參考 KRW 1,545,398｜6/27 前免費取消</dd>
-              </dl>
-              <div class="hint">樂高訂單為 2 大 2 小；河南與束草訂單為 4 成人，報到與早餐以現場為準。</div>
+            <p style="margin:0 0 0.85rem;font-size:var(--fs-small);color:var(--ink-muted)">自駕前往束草，可排沿途景點。</p>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">住宿｜Cassia Sokcho</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <p class="fold-lead">入住 7/2 → 退房 7/4（共兩晚）</p>
+                <dl class="info">
+                  <dt>韓文</dt>
+                  <dd>카시아 속초</dd>
+                  <dt>Agoda</dt>
+                  <dd><strong>1699830242</strong></dd>
+                  <dt>房型</dt>
+                  <dd>Two Bedroom Suite × 1 套</dd>
+                  <dt>人數（訂單）</dt>
+                  <dd>4 成人</dd>
+                  <dt>住客（確認單）</dt>
+                  <dd>WEI-CHE WU</dd>
+                  <dt>電話</dt>
+                  <dd class="copy-row">
+                    +82-33-680-8888
+                    <button type="button" class="copy" data-copy="+82-33-680-8888">複製</button>
+                  </dd>
+                  <dt>地址</dt>
+                  <dd class="copy-row">
+                    120 Daepohanghuimang-gil, Sokcho-si, Gangwon-do, 24901
+                    <button type="button" class="copy" data-copy="120 Daepohanghuimang-gil, Daepo-dong, Sokcho-si, Gangwon-do, 24901, Korea">複製</button>
+                  </dd>
+                  <dt>含</dt>
+                  <dd>停車、Wi-Fi、雙人早餐（兒童早餐依現場）</dd>
+                  <dt>付款／取消</dt>
+                  <dd>預計 2026-06-25 台幣扣款，參考 KRW 1,545,398｜6/27 前免費取消</dd>
+                </dl>
+                <div class="hint">樂高訂單為 2 大 2 小；河南與束草訂單為 4 成人，報到與早餐以現場為準。</div>
+              </div>
             </div>
           </div>
         </div>
@@ -522,13 +587,23 @@
             <span class="tl-sum">束草｜東海岸活動（續住 Cassia）</span>
           </button>
           <div class="tl-body">
-            <div class="day-block">
-              <h3>住宿</h3>
-              <p style="margin:0">續住 <strong>Cassia Sokcho</strong>（同上地址與電話）。</p>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">住宿</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <p style="margin:0">續住 <strong>Cassia Sokcho</strong>（同上地址與電話）。</p>
+              </div>
             </div>
-            <div class="day-block">
-              <h3>行程</h3>
-              <p style="margin:0">當日景點與餐食可自行安排。</p>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">行程</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <p style="margin:0">當日景點與餐食可自行安排。</p>
+              </div>
             </div>
           </div>
         </div>
@@ -543,29 +618,39 @@
             <span class="tl-sum">還車 16:00 仁川 T1｜返程台北</span>
           </button>
           <div class="tl-body">
-            <div class="day-block">
-              <h3>租車（還車）</h3>
-              <dl class="info">
-                <dt>還車</dt>
-                <dd>2026-07-04 <strong>16:00</strong>｜ICN Terminal 1（同取車點）</dd>
-                <dt>客服</dt>
-                <dd class="copy-row">
-                  +82-2-1588-1230
-                  <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
-                </dd>
-              </dl>
-              <div class="hint">請預留 <strong>還車、接駁與報到</strong> 時間。</div>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">租車（還車）</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <dl class="info">
+                  <dt>還車</dt>
+                  <dd>2026-07-04 <strong>16:00</strong>｜ICN Terminal 1（同取車點）</dd>
+                  <dt>客服</dt>
+                  <dd class="copy-row">
+                    +82-2-1588-1230
+                    <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
+                  </dd>
+                </dl>
+                <div class="hint">請預留 <strong>還車、接駁與報到</strong> 時間。</div>
+              </div>
             </div>
-            <div class="day-block">
-              <h3>航空（長榮 BR）</h3>
-              <dl class="info">
-                <dt>航路</dt>
-                <dd>首爾仁川 ICN → 台北桃園 TPE</dd>
-                <dt>日期</dt>
-                <dd>2026-07-04（當日抵達）</dd>
-                <dt>同行旅客</dt>
-                <dd>WANG CHIACHIN、WU HENGYOU、WU HENGYU、WU WEICHE</dd>
-              </dl>
+            <div class="fold">
+              <button type="button" class="fold-head" aria-expanded="false">
+                <span class="fold-title">航空（長榮 BR）</span>
+                <span class="fold-chev" aria-hidden="true">▶</span>
+              </button>
+              <div class="fold-panel">
+                <dl class="info">
+                  <dt>航路</dt>
+                  <dd>首爾仁川 ICN → 台北桃園 TPE</dd>
+                  <dt>日期</dt>
+                  <dd>2026-07-04（當日抵達）</dd>
+                  <dt>同行旅客</dt>
+                  <dd>WANG CHIACHIN、WU HENGYOU、WU HENGYU、WU WEICHE</dd>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
@@ -586,7 +671,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.4.0";
+      var VERSION = "1.4.1";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
@@ -598,6 +683,15 @@
         btn.addEventListener("click", function () {
           var item = btn.closest(".tl-item");
           var open = item.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+
+      document.querySelectorAll(".fold-head").forEach(function (btn) {
+        btn.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          var fold = btn.closest(".fold");
+          var open = fold.classList.toggle("open");
           btn.setAttribute("aria-expanded", open ? "true" : "false");
         });
       });
