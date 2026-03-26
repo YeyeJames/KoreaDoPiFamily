@@ -433,95 +433,6 @@
       }
       ul.time-axis .ta-when { font-size: 0.9rem; }
     }
-    .copy-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.45rem;
-    }
-    button.copy {
-      min-height: 40px;
-      padding: 0.35rem 0.65rem;
-      font-size: 0.88rem;
-      font-weight: 650;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: var(--white);
-      color: #be185d;
-      cursor: pointer;
-    }
-    button.copy:active { background: var(--orange-soft); }
-    .hint {
-      margin-top: 0.65rem;
-      padding: 0.65rem 0.75rem;
-      background: var(--orange-soft);
-      border-radius: 10px;
-      font-size: var(--fs-small);
-      color: var(--ink);
-    }
-    .stay-card {
-      margin: 0 0 0.85rem;
-      padding: 0.75rem;
-      background: linear-gradient(180deg, #fff8fc 0%, #fff 55%);
-      border: 2px solid #fce7f3;
-      border-radius: 14px;
-    }
-    .stay-card-top {
-      display: flex;
-      flex-direction: row;
-      gap: 0.65rem;
-      align-items: stretch;
-      margin-bottom: 0.55rem;
-    }
-    @media (max-width: 420px) {
-      .stay-card-top { flex-direction: column; }
-      .stay-toon { max-height: 5.5rem; width: 100% !important; }
-    }
-    .stay-photo {
-      flex: 1;
-      min-width: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid #fbcfe8;
-    }
-    .stay-photo img {
-      width: 100%;
-      height: 9.5rem;
-      object-fit: cover;
-      display: block;
-    }
-    .stay-toon {
-      width: 5.25rem;
-      flex-shrink: 0;
-      border-radius: 12px;
-      background: linear-gradient(160deg, #d1fae5, #e0f2fe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.4rem;
-      border: 2px dashed #6ee7b7;
-    }
-    .stay-toon svg { width: 100%; height: auto; max-height: 7rem; display: block; }
-    .stay-desc {
-      margin: 0 0 0.45rem;
-      font-size: var(--fs-small);
-      color: var(--ink);
-      line-height: 1.55;
-    }
-    .stay-src {
-      margin: 0 0 0.5rem;
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-      line-height: 1.4;
-    }
-    .stay-bullets {
-      margin: 0;
-      padding-left: 1.15rem;
-      font-size: var(--fs-small);
-      color: var(--ink-muted);
-      line-height: 1.5;
-    }
-    .stay-bullets li { margin: 0.3rem 0; }
     code { font-size: 0.92em; background: var(--cream-deep); padding: 0.1em 0.35em; border-radius: 4px; }
 
     #sec-todo { scroll-margin-top: 4.85rem; }
@@ -546,25 +457,6 @@
       background: var(--cream-deep);
     }
 
-    .toast {
-      position: fixed;
-      bottom: max(1rem, env(safe-area-inset-bottom));
-      left: 50%;
-      transform: translateX(-50%) translateY(150%);
-      padding: 0.65rem 1.1rem;
-      background: var(--ink);
-      color: var(--cream);
-      border-radius: 12px;
-      font-size: var(--fs-small);
-      opacity: 0;
-      transition: transform 0.25s, opacity 0.25s;
-      z-index: 100;
-    }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
     ul.plain { margin: 0.35rem 0 0; padding-left: 1.2rem; }
     ul.plain li { margin: 0.35rem 0; }
   </style>
@@ -583,7 +475,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.12.0</span>
+        <span class="ver" id="versionBadge">網頁版 1.13.0</span>
       </h1>
       <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
       <ul class="hdr-chips" aria-label="行程重點">
@@ -631,31 +523,11 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p class="fold-lead" style="font-weight:800;color:#9d174d;margin-bottom:0.75rem">搭飛機報到時，要用<strong>護照上的英文姓名</strong>喔！平常我們叫：爸爸、媽媽、豆豆哥哥、皮皮弟弟 💛</p>
-                <dl class="info">
-                  <dt>航路</dt>
-                  <dd>台北桃園 TPE → 首爾仁川 ICN</dd>
-                  <dt>去程日期</dt>
-                  <dd>2026-06-30（當日抵達）</dd>
-                  <dt>回程日期</dt>
-                  <dd>2026-07-04，ICN → TPE（當日抵達）</dd>
-                  <dt>艙等代碼</dt>
-                  <dd>CABCLASS=T</dd>
-                <dt>同行旅客（護照英文姓名）</dt>
-                <dd>
-                  <ul class="plain">
-                    <li>WANG CHIACHIN</li>
-                    <li>WU HENGYOU</li>
-                    <li>WU HENGYU</li>
-                    <li>WU WEICHE</li>
-                  </ul>
-                </dd>
-                  <dt>訂位參考</dt>
-                  <dd class="copy-row">
-                    <code>TPEBR08VB</code>
-                    <button type="button" class="copy" data-copy="TPEBR08VB">複製</button>
-                  </dd>
-                </dl>
+                <p class="fold-lead" style="font-weight:800;color:#9d174d;margin-bottom:0.65rem">搭飛機報到要用<strong>護照上的英文名字</strong>喔！平常還是叫我們爸爸、媽媽、豆豆、皮皮就好 💛</p>
+                <ul class="plain" style="margin:0">
+                  <li><strong>長榮航空（BR）</strong>：台灣桃園 ⇄ 韓國仁川。</li>
+                  <li><strong>6/30</strong> 飛到韓國；<strong>7/4</strong> 飛回家。</li>
+                </ul>
               </div>
             </div>
             <div class="fold">
@@ -664,39 +536,10 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <dl class="info">
-                  <dt>預約編號</dt>
-                  <dd class="copy-row">
-                    <strong>2622209071</strong>
-                    <button type="button" class="copy" data-copy="2622209071">複製</button>
-                  </dd>
-                  <dt>取車</dt>
-                  <dd>2026-06-30 <strong>11:30</strong>｜仁川機場 <strong>T1</strong> West｜營業 06:00–20:00</dd>
-                  <dt>還車</dt>
-                  <dd>2026-07-04 <strong>16:00</strong>（同地點）</dd>
-                  <dt>車種／保險／加購</dt>
-                  <dd>SUV｜CDW（0 KRW 自負額）｜Hi-Pass（ETC）預付卡</dd>
-                  <dt>總額（確認信）</dt>
-                  <dd><strong>756,400 KRW</strong></dd>
-                  <dt>確認</dt>
-                  <dd class="copy-row">
-                    yeyelocos@gmail.com（WU WEI CHE）
-                    <button type="button" class="copy" data-copy="yeyelocos@gmail.com">複製信箱</button>
-                  </dd>
-                  <dt>地址</dt>
-                  <dd class="copy-row">
-                    <span>Incheon International Airport T1, 2851 Unseo-dong, Jung-gu, Incheon</span>
-                    <button type="button" class="copy" data-copy="Incheon International Airport Terminal 1, 2851 Unseo-dong, Jung-gu, Incheon, Korea">複製</button>
-                  </dd>
-                  <dt>付款／文件</dt>
-                  <dd>信用卡或金融卡（不收現金）｜護照、國際駕照 IDP 等</dd>
-                  <dt>客服</dt>
-                  <dd class="copy-row">
-                    +82-2-1588-1230
-                    <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
-                  </dd>
-                </dl>
-                <div class="hint">取車後<strong>直接開車</strong>往當日行程第一站。</div>
+                <ul class="plain" style="margin:0">
+                  <li><strong>6/30 11:30</strong> 在仁川機場跟爸媽一起<strong>取車</strong>（休旅車，大家坐得舒服）。</li>
+                  <li><strong>7/4 16:00</strong> 前要在<strong>機場同一地點還車</strong>，再搭飛機回家。</li>
+                </ul>
               </div>
             </div>
             <div class="fold">
@@ -705,25 +548,11 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <dl class="info">
-                  <dt>地點</dt>
-                  <dd class="copy-row">
-                    <strong>Starfield 江南</strong>（스타필드 코엑스몰，首爾江南區 COEX／삼성站一帶）
-                    <button type="button" class="copy" data-copy="스타필드 코엑스몰">複製韓文名</button>
-                  </dd>
-                  <dt>午餐</dt>
-                  <dd>抵達商場後於館內用餐。</dd>
-                  <dt>下午</dt>
-                  <dd>商場內逛街；至<strong>三樓運動天地</strong>遊玩。</dd>
-                  <dt>晚餐（視體力彈性）</dt>
-                  <dd>
-                    <ul class="plain" style="margin-top:0.25rem">
-                      <li>商場內用餐，或</li>
-                      <li>買餐點帶回旅館，或</li>
-                      <li>先至河南飯店 <strong>check-in</strong> 休息，再<strong>叫外賣</strong>回飯店吃</li>
-                    </ul>
-                  </dd>
-                </dl>
+                <ul class="plain" style="margin:0">
+                  <li>取車後去<strong>Starfield 江南</strong>大百貨（COEX 一帶）吃午餐、逛街。</li>
+                  <li>下午可到<strong>三樓運動天地</strong>玩。</li>
+                  <li>晚餐看體力：館內吃、外帶，或回飯店叫外賣。</li>
+                </ul>
               </div>
             </div>
             <div class="fold">
@@ -732,47 +561,7 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p class="fold-lead">入住 6/30 → 退房 7/1（京畿道河南市）</p>
-                <div class="stay-card">
-                  <div class="stay-card-top">
-                    <div class="stay-photo">
-                      <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="飯店客房示意" width="360" height="240" loading="lazy" decoding="async" />
-                    </div>
-                    <div class="stay-toon" aria-hidden="true">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="35" width="64" height="58" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><rect x="28" y="48" width="14" height="12" rx="1" fill="#93c5fd" stroke="#2563eb" stroke-width="1"/><rect x="58" y="48" width="14" height="12" rx="1" fill="#93c5fd" stroke="#2563eb" stroke-width="1"/><rect x="42" y="68" width="16" height="25" rx="1" fill="#fca5a5" stroke="#dc2626" stroke-width="1"/><polygon points="50,12 78,38 22,38" fill="#fecaca" stroke="#e11d48" stroke-width="2"/><circle cx="72" cy="22" r="8" fill="#fde047"/><rect x="36" y="24" width="10" height="12" rx="1" fill="#fbbf24" stroke="#b45309" stroke-width="1"/></svg>
-                    </div>
-                  </div>
-                  <p class="stay-desc"><strong>河南 Aloha</strong>（하남 알로하호텔）在首爾近郊的<strong>京畿道河南市</strong>，不少旅客分享：離 <strong>Starfield Hanam</strong> 大型商場不遠，逛街吃飯方便；房內常有電視、冰箱等設備，並提供 <strong>Wi‑Fi、停車</strong>。綜合 Trip.com、HotelsCombined 等公開評價約落在 <strong>7.5～8.3 分</strong>段（僅供參考）。</p>
-                  <p class="stay-src">公開資訊彙整自 Trip.com、HotelsCombined、飯店官網等；下方照片為<strong>同類飯店客房示意</strong>（Unsplash），非該飯店實拍。</p>
-                  <ul class="stay-bullets">
-                    <li>我們訂兩間 <strong>Superior Double</strong> 相鄰房，方便爸爸媽媽照顧豆豆、皮皮。</li>
-                    <li>第一天玩完 Starfield 江南後，開車回河南休息剛好。</li>
-                  </ul>
-                </div>
-                <dl class="info">
-                  <dt>韓文</dt>
-                  <dd>하남 알로하호텔</dd>
-                  <dt>訂房</dt>
-                  <dd>Agoda <strong>1710882041</strong>｜Booking.com 5719023907（給飯店）</dd>
-                  <dt>房型</dt>
-                  <dd>Superior Double × 2 間（相鄰房、停車場）</dd>
-                  <dt>人數（訂單）</dt>
-                  <dd>4 成人</dd>
-                  <dt>電話</dt>
-                  <dd class="copy-row">
-                    +82-10-4952-5222
-                    <button type="button" class="copy" data-copy="+82-10-4952-5222">複製</button>
-                  </dd>
-                  <dt>地址</dt>
-                  <dd class="copy-row">
-                    84, hanam-daero 776beon-gil, Hanam-si, Gyeonggi-do, 12947
-                    <button type="button" class="copy" data-copy="84, hanam-daero 776beon-gil, Sinjang-dong, Hanam-si, Gyeonggi-do, 12947, Korea">複製</button>
-                  </dd>
-                  <dt>含</dt>
-                  <dd>Wi-Fi、停車</dd>
-                  <dt>付款／取消</dt>
-                  <dd>預計 2026-06-27 台幣扣款，參考 KRW 165,020｜6/29 前免費取消</dd>
-                </dl>
+                <p class="fold-lead" style="margin:0">6/30 晚上住<strong>河南</strong>（首爾近郊），兩間房一家人，飯店可停車；玩完百貨開車回去休息。</p>
               </div>
             </div>
           </div>
@@ -811,12 +600,7 @@
                   <li><span class="ta-when">傍晚</span><span><strong>開車外出</strong>至春川市區或<strong>明洞辣炒雞排街</strong>一帶（명동 닭갈비 골목 等），吃<strong>春川辣炒雞排（닭갈비）</strong>；餐廳與停車當天再選。</span></li>
                   <li><span class="ta-when">晚上</span><span>回飯店休息。<strong>單日票僅 7/1</strong>；若票規<strong>不允許當日再入園</strong>，離園後即不再回樂高。若允許再入園且孩子還有體力，可自行斟酌（非必須）。</span></li>
                 </ul>
-                <dl class="info">
-                  <dt>7/2</dt>
-                  <dd><strong>不再進樂高</strong>；早餐後整理，自駕往<strong>束草</strong>（見 7/2 行程）。</dd>
-                  <dt>出發前可確認</dt>
-                  <dd>飯店<strong>行李寄存</strong>規定、樂高<strong>單日票是否可當日重複入園</strong>（影響離園後是否還能晚場再進）。</dd>
-                </dl>
+                <p class="fold-lead" style="margin:0.65rem 0 0">隔天<strong>7/2</strong>不再進樂高，早餐後往束草（見當天行程）。</p>
               </div>
             </div>
             <div class="fold">
@@ -825,49 +609,7 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p class="fold-lead">入住 7/1 → 退房 7/2（江原道春川）</p>
-                <div class="stay-card">
-                  <div class="stay-card-top">
-                    <div class="stay-photo">
-                      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="繽紛親子飯店房間示意" width="360" height="240" loading="lazy" decoding="async" />
-                    </div>
-                    <div class="stay-toon" style="background:linear-gradient(160deg,#fef3c7,#fecdd3);border-color:#f472b6" aria-hidden="true">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="45" width="56" height="50" rx="3" fill="#fecdd3" stroke="#db2777" stroke-width="2"/><rect x="12" y="58" width="18" height="38" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><rect x="70" y="54" width="18" height="42" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><polygon points="50,8 68,38 32,38" fill="#fde047" stroke="#ca8a04" stroke-width="2"/><rect x="40" y="28" width="20" height="18" fill="#fef08a"/><rect x="30" y="62" width="10" height="10" rx="1" fill="#ef4444"/><rect x="60" y="62" width="10" height="10" rx="1" fill="#3b82f6"/></svg>
-                    </div>
-                  </div>
-                  <p class="stay-desc"><strong>LEGOLAND Korea Resort Hotel</strong>（레고랜드 코리아 리조트）在<strong>春川</strong>樂高樂園旁，是園區配套的<strong>主題度假飯店</strong>。依 <a href="https://legoland.kr/" target="_blank" rel="noopener">LEGOLAND Korea 官網</a> 與公開介紹：客房多為積木／英雄風佈置，常有<strong>兒童遊戲或活動空間</strong>、<strong>早餐餐廳</strong>；園區與飯店消費多為<strong>無現金</strong>（信用卡／手機支付）。園區與商標歸權利人所有，網頁僅作行程說明。</p>
-                  <p class="stay-src">飯店外觀與房間以現場為準；照片為<strong>彩色親子房型示意</strong>（Unsplash），非官方宣傳照。</p>
-                  <ul class="stay-bullets">
-                    <li>豆豆、皮皮可能住到<strong>忍者／海盜／王國</strong>其中一種主題（訂房時寫<strong>隨機</strong>）。</li>
-                    <li>7/1 玩樂高後<strong>15:20 入住</strong>，晚上<strong>開車吃炒雞</strong>再回飯店休息。</li>
-                  </ul>
-                </div>
-                <dl class="info">
-                  <dt>韓文</dt>
-                  <dd>레고랜드 코리아 리조트</dd>
-                  <dt>訂房</dt>
-                  <dd>參照 266683535739112｜訂單 1699823143</dd>
-                  <dt>房型</dt>
-                  <dd>高級客房（忍者／海盜／王國主題隨機）</dd>
-                  <dt>人數</dt>
-                  <dd>2 成人、2 兒童｜1 房</dd>
-                  <dt>住客（確認單）</dt>
-                  <dd>WEI-CHE WU</dd>
-                  <dt>電話</dt>
-                  <dd class="copy-row">
-                    +82-33-815-2300
-                    <button type="button" class="copy" data-copy="+82-33-815-2300">複製</button>
-                  </dd>
-                  <dt>地址</dt>
-                  <dd class="copy-row">
-                    128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240
-                    <button type="button" class="copy" data-copy="128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240, Korea">複製</button>
-                  </dd>
-                  <dt>含</dt>
-                  <dd>停車、Wi-Fi、早餐</dd>
-                  <dt>付款／取消</dt>
-                  <dd>預計 2026-04-09 台幣扣款，參考 USD 184.54｜4/11 前免費取消</dd>
-                </dl>
+                <p class="fold-lead" style="margin:0">7/1 晚上住在<strong>樂高樂園旁邊的飯店</strong>，走路就能到園區；房間可能是<strong>忍者／海盜／城堡</strong>其中一種主題。隔天早餐在飯店吃。</p>
               </div>
             </div>
           </div>
@@ -899,14 +641,9 @@
                   <li><span class="ta-when">出發後</span><span><strong>自駕</strong> 春川樂高一帶 → <strong>束草／雪嶽山纜車</strong>方向（車程以導航為準，遇塞車則抵達時間順延）。</span></li>
                   <li><span class="ta-when">中午</span><span>抵達<strong>雪嶽山纜車</strong>（설악 케이블카）周邊；先在<strong>站區／商店街吃小吃、輕食</strong>填肚子，再準備下午搭車。</span></li>
                   <li><span class="ta-when">下午</span><span><strong>搭乘纜車</strong>（依現場排隊與購票流程；旺季可能等候較久）。</span></li>
-                  <li><span class="ta-when">纜車後</span><span><strong>直奔 Cassia Sokcho</strong>（大浦港）辦理<strong>入住</strong>；晚餐可在飯店附近或外帶（另排）。</span></li>
+                  <li><span class="ta-when">纜車後</span><span><strong>直奔束草海邊飯店</strong>辦入住；晚餐附近吃或外帶都可以。</span></li>
                 </ul>
-                <dl class="info">
-                  <dt>行李與停車</dt>
-                  <dd>行李可暫放<strong>車上</strong>（貴重物品隨身）；纜車站附設<strong>停車場</strong>，費用與空位以現場為準。</dd>
-                  <dt>提醒</dt>
-                  <dd>暑期可能<strong>排隊</strong>；若強風等天候因素，纜車可能<strong>暫停</strong>，需有備用心理準備（改傍晚直抵飯店休息或市區散步）。</dd>
-                </dl>
+                <p class="fold-lead" style="margin:0.65rem 0 0">纜車有時要排隊；風太大可能停開，爸媽會看當天狀況。</p>
               </div>
             </div>
             <div class="fold">
@@ -915,50 +652,7 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p class="fold-lead">入住 7/2 → 退房 7/4（共兩晚）</p>
-                <div class="stay-card">
-                  <div class="stay-card-top">
-                    <div class="stay-photo">
-                      <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="海景公寓式套房示意" width="360" height="240" loading="lazy" decoding="async" />
-                    </div>
-                    <div class="stay-toon" style="background:linear-gradient(160deg,#bae6fd,#e0f2fe);border-color:#38bdf8" aria-hidden="true">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M8 78 Q25 55 50 58 Q75 52 92 78 L92 95 L8 95 Z" fill="#7dd3fc" stroke="#0284c7" stroke-width="2"/><path d="M8 82 Q30 68 50 72 Q72 66 92 82" fill="none" stroke="#fff" stroke-width="2" opacity="0.7"/><rect x="28" y="22" width="44" height="52" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/><rect x="34" y="30" width="12" height="10" fill="#7dd3fc"/><rect x="54" y="30" width="12" height="10" fill="#7dd3fc"/><rect x="34" y="46" width="12" height="10" fill="#7dd3fc"/><rect x="54" y="46" width="12" height="10" fill="#7dd3fc"/><circle cx="78" cy="18" r="12" fill="#fde047" stroke="#eab308" stroke-width="2"/></svg>
-                    </div>
-                  </div>
-                  <p class="stay-desc"><strong>Cassia Sokcho</strong>（카시아 속초）在束草<strong>大浦港</strong>一帶，屬雅高集團 <strong>Cassia</strong> 品牌——風格接近<strong>公寓式酒店</strong>，常有客廳、雙臥與簡易廚房空間，適合<strong>家庭連住數晚</strong>，可簡單開伙或洗衣（依房型與現場規定）。步行可感受漁港與海岸氛圍。品牌介紹可見 <a href="https://all.accor.com/brands/cassia.en.shtml" target="_blank" rel="noopener">Accor — Cassia</a>。</p>
-                  <p class="stay-src">房內格局與海景視野以現場為準；照片為<strong>明亮套房／客廳示意</strong>（Unsplash），非飯店實拍。</p>
-                  <ul class="stay-bullets">
-                    <li>我們訂 <strong>Two Bedroom Suite</strong> 一套，兩晚慢慢玩束草。</li>
-                    <li>附近有<strong>海景與美食</strong>，豆豆、皮皮可以沙灘散步、吃海鮮（行程再安排）。</li>
-                  </ul>
-                </div>
-                <dl class="info">
-                  <dt>韓文</dt>
-                  <dd>카시아 속초</dd>
-                  <dt>Agoda</dt>
-                  <dd><strong>1699830242</strong></dd>
-                  <dt>房型</dt>
-                  <dd>Two Bedroom Suite × 1 套</dd>
-                  <dt>人數（訂單）</dt>
-                  <dd>4 成人</dd>
-                  <dt>住客（確認單）</dt>
-                  <dd>WEI-CHE WU</dd>
-                  <dt>電話</dt>
-                  <dd class="copy-row">
-                    +82-33-680-8888
-                    <button type="button" class="copy" data-copy="+82-33-680-8888">複製</button>
-                  </dd>
-                  <dt>地址</dt>
-                  <dd class="copy-row">
-                    120 Daepohanghuimang-gil, Sokcho-si, Gangwon-do, 24901
-                    <button type="button" class="copy" data-copy="120 Daepohanghuimang-gil, Daepo-dong, Sokcho-si, Gangwon-do, 24901, Korea">複製</button>
-                  </dd>
-                  <dt>含</dt>
-                  <dd>停車、Wi-Fi、雙人早餐（兒童早餐依現場）</dd>
-                  <dt>付款／取消</dt>
-                  <dd>預計 2026-06-25 台幣扣款，參考 KRW 1,545,398｜6/27 前免費取消</dd>
-                </dl>
-                <div class="hint">樂高訂單為 2 大 2 小；河南與束草訂單為 4 成人，報到與早餐以現場為準。</div>
+                <p class="fold-lead" style="margin:0"><strong>7/2 晚上到 7/4 早上</strong>住<strong>束草海邊（大浦港）</strong>：像小公寓，有客廳和兩間臥室，方便一家人；附近能看海、散步、找好吃的。</p>
               </div>
             </div>
           </div>
@@ -983,7 +677,7 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <p style="margin:0">續住 <strong>Cassia Sokcho</strong>（同上地址與電話）。</p>
+                <p style="margin:0">跟昨天同一間<strong>束草海邊飯店</strong>，繼續玩東海岸。</p>
               </div>
             </div>
             <div class="fold">
@@ -1018,16 +712,10 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <dl class="info">
-                  <dt>還車</dt>
-                  <dd>2026-07-04 <strong>16:00</strong>｜ICN Terminal 1（同取車點）</dd>
-                  <dt>客服</dt>
-                  <dd class="copy-row">
-                    +82-2-1588-1230
-                    <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
-                  </dd>
-                </dl>
-                <div class="hint">請預留 <strong>還車、接駁與報到</strong> 時間。</div>
+                <ul class="plain" style="margin:0">
+                  <li><strong>7/4 16:00 前</strong>到<strong>仁川機場</strong>還車。</li>
+                  <li>還車、辦登機都要時間，當天要<strong>早一點從束草出發</strong>。</li>
+                </ul>
               </div>
             </div>
             <div class="fold">
@@ -1036,14 +724,10 @@
                 <span class="fold-chev" aria-hidden="true">▶</span>
               </button>
               <div class="fold-panel">
-                <dl class="info">
-                  <dt>航路</dt>
-                  <dd>首爾仁川 ICN → 台北桃園 TPE</dd>
-                  <dt>日期</dt>
-                  <dd>2026-07-04（當日抵達）</dd>
-                  <dt>同行旅客</dt>
-                  <dd>WANG CHIACHIN、WU HENGYOU、WU HENGYU、WU WEICHE</dd>
-                </dl>
+                <ul class="plain" style="margin:0">
+                  <li><strong>7/4</strong> 從韓國仁川飛回<strong>台灣桃園</strong>（長榮航空）。</li>
+                  <li>登機門與時間看機場螢幕；護照報到跟去程一樣用英文名字。</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1061,15 +745,13 @@
 
   <footer>
     <p style="margin:0 0 0.5rem;font-weight:800;color:#831843">豆豆、皮皮，旅途平安！</p>
-    <p style="margin:0;font-size:0.85rem">行程內住宿區塊<strong>示意照片</strong>來自 <a href="https://unsplash.com/?utm_source=koreado_pi_family&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>（免費授權）；飯店旁小圖為網頁自製插畫。住宿文字依官網與訂房平台<strong>公開說明</strong>整理，非商業代言。</p>
+    <p style="margin:0;font-size:0.85rem">訂位、電話與地址等細節由爸媽另外留檔；這一頁給豆豆、皮皮看<strong>重點與時間</strong>就好。</p>
     <p style="margin:0.5rem 0 0;font-size:0.8rem;opacity:0.9">江原道五日遊 · <code>index.html</code></p>
   </footer>
 
-  <div class="toast" id="toast" role="status">已複製</div>
-
   <script>
     (function () {
-      var VERSION = "1.12.0";
+      var VERSION = "1.13.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
@@ -1091,26 +773,6 @@
           var fold = btn.closest(".fold");
           var open = fold.classList.toggle("open");
           btn.setAttribute("aria-expanded", open ? "true" : "false");
-        });
-      });
-
-      var toast = document.getElementById("toast");
-      function showToast(msg) {
-        toast.textContent = msg || "已複製";
-        toast.classList.add("show");
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(function () { toast.classList.remove("show"); }, 1600);
-      }
-      document.querySelectorAll("button.copy").forEach(function (btn) {
-        btn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          var t = btn.getAttribute("data-copy");
-          if (!t) return;
-          navigator.clipboard.writeText(t).then(function () {
-            showToast("已複製");
-          }).catch(function () {
-            showToast("請手動複製");
-          });
         });
       });
 
