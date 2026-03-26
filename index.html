@@ -384,20 +384,23 @@
       list-style: none;
     }
     ul.time-axis li {
-      display: grid;
-      grid-template-columns: minmax(7.25rem, 10rem) 1fr;
-      gap: 0.35rem 0.65rem;
-      padding: 0.55rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.4rem;
+      padding: 0.65rem 0;
       border-bottom: 1px dashed var(--line);
       font-size: var(--fs-small);
       line-height: 1.5;
-      align-items: start;
     }
     ul.time-axis li:last-child { border-bottom: none; padding-bottom: 0; }
     ul.time-axis .ta-when {
       font-weight: 900;
       color: #9d174d;
       letter-spacing: -0.02em;
+      font-size: clamp(0.95rem, 3vw, 1.05rem);
+      line-height: 1.35;
+      margin: 0;
     }
     ul.time-axis .ta-detail {
       min-width: 0;
@@ -436,12 +439,7 @@
       font-size: var(--fs-small);
     }
     .fold--nested .fold-panel .fold-lead { margin-top: 0; }
-    @media (max-width: 360px) {
-      ul.time-axis li {
-        grid-template-columns: 1fr;
-        gap: 0.2rem;
-      }
-      ul.time-axis .ta-when { font-size: 0.9rem; }
+    @media (max-width: 520px) {
       ul.time-axis .ta-detail .inline-axis-row {
         grid-template-columns: 1fr;
       }
@@ -488,7 +486,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.16</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.17</span>
       </h1>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
@@ -891,7 +889,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.16";
+      var VERSION = "1.15.17";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
