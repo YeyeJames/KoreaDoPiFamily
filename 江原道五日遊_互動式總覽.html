@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>江原道五日遊｜互動式總覽</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --bg-card: #1a222d;
+      --bg-elevated: #232d3b;
+      --text: #e8eef4;
+      --muted: #8b9cb3;
+      --accent: #3d9cf0;
+      --accent-dim: rgba(61, 156, 240, 0.15);
+      --ok: #4ade80;
+      --warn: #fbbf24;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 12px;
+      --font: "SF Pro Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      padding: 1.75rem 1.25rem 1rem;
+      background: linear-gradient(165deg, #1a2838 0%, var(--bg) 55%);
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    header .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 52rem;
+    }
+    header .ver {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.65rem 1rem;
+      background: rgba(15, 20, 25, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .toolbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .toolbar a.nav {
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.82rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .toolbar a.nav:hover,
+    .toolbar a.nav:focus-visible {
+      background: var(--bg-elevated);
+      border-color: rgba(61, 156, 240, 0.35);
+      outline: none;
+    }
+    .toolbar a.nav.active {
+      background: var(--accent-dim);
+      border-color: rgba(61, 156, 240, 0.5);
+      color: var(--accent);
+    }
+    .search-wrap {
+      margin-left: auto;
+      flex: 1 1 140px;
+      max-width: 220px;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 0.45rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+    .search-wrap input::placeholder { color: var(--muted); }
+    main { padding: 1.25rem 1rem 3rem; max-width: 900px; margin: 0 auto; }
+    section {
+      margin-bottom: 2.25rem;
+      scroll-margin-top: 3.5rem;
+    }
+    section h2 {
+      margin: 0 0 1rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    section h2::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .card h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .muted { color: var(--muted); font-size: 0.88rem; }
+    .grid-2 {
+      display: grid;
+      gap: 0.5rem 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    dl.flat { margin: 0; }
+    dl.flat dt {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.65rem;
+    }
+    dl.flat dt:first-child { margin-top: 0; }
+    dl.flat dd { margin: 0.15rem 0 0; }
+    .copy-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.5rem;
+    }
+    button.copy {
+      cursor: pointer;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--muted);
+    }
+    button.copy:hover { color: var(--text); border-color: rgba(61, 156, 240, 0.4); }
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      padding: 0.55rem 1rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: transform 0.25s, opacity 0.25s;
+      z-index: 100;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.45rem;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 2px;
+      background: linear-gradient(var(--accent), transparent);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 0.6rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -1.1rem;
+      top: 1rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--bg);
+    }
+    .tl-head {
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      background: transparent;
+      border: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .tl-head:hover { background: rgba(255, 255, 255, 0.03); }
+    .tl-date { font-weight: 650; color: var(--accent); font-size: 0.9rem; }
+    .tl-sum { flex: 1; font-size: 0.92rem; }
+    .tl-chev {
+      color: var(--muted);
+      transition: transform 0.2s;
+      font-size: 0.8rem;
+    }
+    .tl-item.open .tl-chev { transform: rotate(90deg); }
+    .tl-body {
+      display: none;
+      padding: 0 1rem 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .tl-item.open .tl-body { display: block; }
+    /* Accordion hotels */
+    .acc button.acc-head {
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+    .acc button.acc-head:hover { background: var(--bg-elevated); }
+    .acc .acc-panel {
+      display: none;
+      padding: 0 0 1rem 0.25rem;
+    }
+    .acc .acc-item.open .acc-panel { display: block; }
+    .acc .acc-item.open button.acc-head { border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-bottom: 0; }
+    .acc .acc-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      margin-bottom: 0.75rem;
+    }
+    /* Tabs */
+    .tabs { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
+    .tabs button {
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .tabs button.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: rgba(61, 156, 240, 0.45);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    /* Table */
+    table.files {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    table.files th, table.files td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.files th { background: var(--bg-elevated); color: var(--muted); font-weight: 600; }
+    table.files tr.hidden { display: none; }
+    mark.hl { background: rgba(251, 191, 36, 0.35); padding: 0 0.1em; border-radius: 2px; }
+    /* Checklist */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input { margin-top: 0.25rem; accent-color: var(--accent); }
+    .check-item label { cursor: pointer; flex: 1; }
+    .check-item.done label { color: var(--muted); text-decoration: line-through; }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(74, 222, 128, 0.12);
+      color: var(--ok);
+      font-weight: 600;
+      margin-left: 0.35rem;
+    }
+    .warn-box {
+      border-left: 3px solid var(--warn);
+      padding: 0.65rem 0.85rem;
+      background: rgba(251, 191, 36, 0.08);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.88rem;
+      margin-top: 0.75rem;
+    }
+    @media print {
+      .toolbar, button.copy, .search-wrap, .toast { display: none !important; }
+      body { background: #fff; color: #111; }
+      .card, .tl-item, table.files th { background: #f5f5f5; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>江原道五日遊｜互動式總覽</h1>
+    <p class="sub">
+      彙整機票、租車、住宿與原始檔對照。長榮 PDF 內嵌字型不易複製文字，航班編號與精確起降時間請以
+      <a href="https://www.evaair.com/" target="_blank" rel="noopener">長榮官網</a>
+      或訂位紀錄為準。
+    </p>
+    <span class="ver" id="versionBadge">網頁版 1.2.0</span>
+  </header>
+
+  <div class="toolbar">
+    <nav id="mainNav">
+      <a class="nav" href="#sec-intro">說明</a>
+      <a class="nav" href="#sec-timeline">時間軸</a>
+      <a class="nav" href="#sec-tabs">航空・租車</a>
+      <a class="nav" href="#sec-hotels">住宿</a>
+      <a class="nav" href="#sec-files">檔案</a>
+      <a class="nav" href="#sec-todo">待辦</a>
+    </nav>
+    <div class="search-wrap">
+      <input type="search" id="globalSearch" placeholder="搜尋全文…" autocomplete="off" aria-label="搜尋" />
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <section id="sec-intro">
+      <h2>用途與免責</h2>
+      <div class="card searchable">
+        <p class="muted" style="margin-top:0">
+          本頁為資料夾內 PDF（2026-03-26 整理）之摘要，供行程規劃與查核。不構成契約或法律解釋；爭議以各供應商與原始確認文件為準。
+        </p>
+        <p class="muted" style="margin-bottom:0">
+          實際「五天」可依從台出發日到返台日自行對齊；時間軸對齊<strong>在韓住宿與租車區間</strong>。
+        </p>
+      </div>
+    </section>
+
+    <section id="sec-timeline">
+      <h2>行程時間軸<span class="tag">已訂</span></h2>
+      <p class="muted" style="margin-top:-0.5rem;margin-bottom:1rem">點列可展開細節。</p>
+      <div class="timeline" id="timeline">
+        <div class="tl-item open searchable" data-keywords="仁川 租車 河南 ICN 取車">
+          <button type="button" class="tl-head" aria-expanded="true">
+            <span class="tl-date">6/30（一）</span>
+            <span class="tl-sum">抵達韓國仁川（ICN）；租車取車 11:30；夜宿河南市（京畿道）</span>
+            <span class="tl-chev" aria-hidden="true">▶</span>
+          </button>
+          <div class="tl-body">
+            <ul style="margin:0.5rem 0 0 1.1rem;padding:0">
+              <li>班機：長榮 BR，TPE → ICN，日期 2026-06-30（詳見「航空」分頁）</li>
+              <li>租車取車：<strong>11:30</strong>，仁川機場第一航廈 T1 West side</li>
+              <li>住宿：Hanam Aloha Hotel（河南）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item searchable" data-keywords="春川 樂高">
+          <button type="button" class="tl-head" aria-expanded="false">
+            <span class="tl-date">7/1（二）</span>
+            <span class="tl-sum">退房後往春川；夜宿樂高樂園韓國度假飯店</span>
+            <span class="tl-chev" aria-hidden="true">▶</span>
+          </button>
+          <div class="tl-body">
+            <ul style="margin:0.5rem 0 0 1.1rem;padding:0">
+              <li>河南 → 春川自駕（規劃路線與 Check-in 時段）</li>
+              <li>LEGOLAND Korea Resort Hotel，入住 7/1、退房 7/2</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item searchable" data-keywords="束草 Cassia">
+          <button type="button" class="tl-head" aria-expanded="false">
+            <span class="tl-date">7/2（三）</span>
+            <span class="tl-sum">退房後往束草；夜宿 Cassia Sokcho</span>
+            <span class="tl-chev" aria-hidden="true">▶</span>
+          </button>
+          <div class="tl-body">
+            <ul style="margin:0.5rem 0 0 1.1rem;padding:0">
+              <li>春川 → 束草自駕（可排沿途景點）</li>
+              <li>Cassia Sokcho 兩晚 7/2–7/4</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item searchable" data-keywords="東海岸">
+          <button type="button" class="tl-head" aria-expanded="false">
+            <span class="tl-date">7/3（四）</span>
+            <span class="tl-sum">束草（江原道東海岸）活動</span>
+            <span class="tl-chev" aria-hidden="true">▶</span>
+          </button>
+          <div class="tl-body">
+            <p style="margin:0.5rem 0 0">自由安排景點、美食；住宿仍為 Cassia Sokcho。</p>
+          </div>
+        </div>
+        <div class="tl-item searchable" data-keywords="還車 仁川 返程 台北">
+          <button type="button" class="tl-head" aria-expanded="false">
+            <span class="tl-date">7/4（五）</span>
+            <span class="tl-sum">還車 16:00 仁川機場 T1；返程台北</span>
+            <span class="tl-chev" aria-hidden="true">▶</span>
+          </button>
+          <div class="tl-body">
+            <ul style="margin:0.5rem 0 0 1.1rem;padding:0">
+              <li>還車：<strong>2026-07-04 16:00</strong>，ICN T1 同取車點</li>
+              <li>班機：ICN → TPE，日期 2026-07-04</li>
+              <li>預留還車、接駁與報到時間</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-tabs">
+      <h2>航空與租車</h2>
+      <div class="tabs" role="tablist" aria-label="分類">
+        <button type="button" class="active" role="tab" aria-selected="true" data-tab="tab-flight">航空（長榮 BR）</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="tab-car">租車（樂天）</button>
+      </div>
+      <div id="tab-flight" class="tab-panel active searchable" role="tabpanel">
+        <div class="card">
+          <h3>航路與艙等</h3>
+          <dl class="flat">
+            <dt>航空公司</dt>
+            <dd>長榮航空（IATA：BR）</dd>
+            <dt>航路</dt>
+            <dd>台北桃園 TPE ↔ 首爾仁川 ICN</dd>
+            <dt>艙等（票證連結）</dt>
+            <dd>CABCLASS=T（常見為經濟等級代碼，以訂位為準）</dd>
+          </dl>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>去程</h3>
+            <p style="margin:0"><strong>2026-06-30</strong>（30JUN）<br />TPE → ICN，當日抵達</p>
+          </div>
+          <div class="card">
+            <h3>回程</h3>
+            <p style="margin:0"><strong>2026-07-04</strong>（04JUL）<br />ICN → TPE，當日抵達</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>同行旅客（各有一份 EVA 電子票證／EMD PDF）</h3>
+          <ul style="margin:0.25rem 0 0 1.1rem">
+            <li>WANG CHIACHIN</li>
+            <li>WU HENGYOU（票證內嵌 FARE 參數與部分同行者不同，可能為不同票種／價格）</li>
+            <li>WU HENGYU</li>
+            <li>WU WEICHE</li>
+          </ul>
+          <div class="copy-row" style="margin-top:0.75rem">
+            <span>訂位參考（PDF 連結）：<code>TPEBR08VB</code></span>
+            <button type="button" class="copy" data-copy="TPEBR08VB">複製</button>
+          </div>
+          <p class="muted" style="margin-bottom:0">完整 PNR 請以長榮通知為準。</p>
+        </div>
+      </div>
+      <div id="tab-car" class="tab-panel searchable" role="tabpanel" hidden>
+        <div class="card">
+          <h3>LOTTE rent-a-car</h3>
+          <dl class="flat">
+            <dt>預約編號</dt>
+            <dd class="copy-row">
+              <strong>2622209071</strong>
+              <button type="button" class="copy" data-copy="2622209071">複製</button>
+            </dd>
+            <dt>確認信箱／對象</dt>
+            <dd class="copy-row">
+              <span>yeyelocos@gmail.com；WU WEI CHE</span>
+              <button type="button" class="copy" data-copy="yeyelocos@gmail.com">複製信箱</button>
+            </dd>
+            <dt>車種</dt>
+            <dd>SUV（細部車型以取車單據為準）</dd>
+            <dt>保險</dt>
+            <dd>CDW（Collision Damage Waiver），0 KRW 自負額</dd>
+            <dt>加購</dt>
+            <dd>Hi-Pass（ETC）預付卡</dd>
+            <dt>總額（確認信）</dt>
+            <dd><strong>756,400 KRW</strong></dd>
+            <dt>取車</dt>
+            <dd>2026-06-30 <strong>11:30</strong>｜ICN Terminal 1 West｜營業 06:00–20:00</dd>
+            <dt>還車</dt>
+            <dd>2026-07-04 <strong>16:00</strong>｜同上</dd>
+            <dt>地址（英文摘錄）</dt>
+            <dd class="copy-row">
+              <span style="word-break:break-word">Incheon International Airport Terminal 1, 2851 Unseo-dong, Jung-gu, Incheon, Korea</span>
+              <button type="button" class="copy" data-copy="Incheon International Airport Terminal 1, 2851 Unseo-dong, Jung-gu, Incheon, Korea">複製</button>
+            </dd>
+            <dt>付款</dt>
+            <dd>僅信用卡／金融卡，不收現金</dd>
+            <dt>取車文件</dt>
+            <dd>護照、國際駕照（IDP）等（以官網為準）</dd>
+            <dt>客服</dt>
+            <dd class="copy-row">
+              <span>+82-2-1588-1230</span>
+              <button type="button" class="copy" data-copy="+82-2-1588-1230">複製</button>
+            </dd>
+          </dl>
+          <div class="warn-box">
+            6/30 須銜接 <strong>11:30 取車</strong>；7/4 須在 <strong>16:00 前完成還車</strong> 再辦登機。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-hotels">
+      <h2>住宿</h2>
+      <p class="muted" style="margin-top:-0.5rem;margin-bottom:1rem">點標題展開完整欄位。</p>
+      <div class="acc" id="hotelAcc">
+        <div class="acc-item open searchable" data-keywords="河南 Aloha Hanam Agoda">
+          <button type="button" class="acc-head" aria-expanded="true">
+            <span><strong>河南 Aloha</strong> — Hanam Aloha Hotel（6/30–7/1）</span>
+            <span>▼</span>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-body">
+              <dl class="flat">
+                <dt>韓文</dt>
+                <dd>하남 알로하호텔</dd>
+                <dt>訂房</dt>
+                <dd>Agoda Booking ID <strong>1710882041</strong>；Booking.com 5719023907（給飯店）</dd>
+                <dt>房型</dt>
+                <dd>Superior Double × 2 間（AdjoiningRoom、停車場）</dd>
+                <dt>人數（訂單）</dt>
+                <dd>4 成人、0 兒童</dd>
+                <dt>地址</dt>
+                <dd class="copy-row">
+                  <span style="word-break:break-word">84, hanam-daero 776beon-gil, Sinjang-dong, Hanam-si, Gyeonggi-do, 12947, Korea</span>
+                  <button type="button" class="copy" data-copy="84, hanam-daero 776beon-gil, Sinjang-dong, Hanam-si, Gyeonggi-do, 12947, Korea">複製</button>
+                </dd>
+                <dt>電話</dt>
+                <dd class="copy-row">
+                  +82-10-4952-5222
+                  <button type="button" class="copy" data-copy="+82-10-4952-5222">複製</button>
+                </dd>
+                <dt>含</dt>
+                <dd>Wi-Fi、停車</dd>
+                <dt>付款</dt>
+                <dd>MasterCard 末四 2105；預計 2026-06-27 以 TWD 扣款，參考 KRW 165,020</dd>
+                <dt>取消</dt>
+                <dd>2026-06-29 前免費取消（細則見確認信）</dd>
+              </dl>
+              <p class="muted" style="margin-bottom:0">河南市屬京畿道，非江原道；利於抵達當日落腳後再開往春川。</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item searchable" data-keywords="樂高 春川 Chuncheon LEGOLAND">
+          <button type="button" class="acc-head" aria-expanded="false">
+            <span><strong>樂高樂園飯店</strong> — LEGOLAND Korea Resort（7/1–7/2）</span>
+            <span>▶</span>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-body">
+              <dl class="flat">
+                <dt>韓文</dt>
+                <dd>레고랜드 코리아 리조트</dd>
+                <dt>訂房</dt>
+                <dd>參照 266683535739112；訂單 1699823143</dd>
+                <dt>房型</dt>
+                <dd>高級客房（忍者／海盜／王國主題隨機）</dd>
+                <dt>人數</dt>
+                <dd>2 成人、2 兒童；1 房</dd>
+                <dt>住客（確認單）</dt>
+                <dd>WEI-CHE WU</dd>
+                <dt>地址</dt>
+                <dd class="copy-row">
+                  <span style="word-break:break-word">128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240, Korea</span>
+                  <button type="button" class="copy" data-copy="128 Hajungdo-gil, Chuncheon-si, Gangwon-do, 24240, Korea">複製</button>
+                </dd>
+                <dt>電話</dt>
+                <dd class="copy-row">
+                  +82-33-815-2300
+                  <button type="button" class="copy" data-copy="+82-33-815-2300">複製</button>
+                </dd>
+                <dt>含</dt>
+                <dd>停車、Wi-Fi、早餐</dd>
+                <dt>付款</dt>
+                <dd>預計 2026-04-09 以 TWD 扣款，參考 USD 184.54</dd>
+                <dt>取消</dt>
+                <dd>2026-04-11 前免費取消（之後階梯收費）</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item searchable" data-keywords="束草 Sokcho Cassia">
+          <button type="button" class="acc-head" aria-expanded="false">
+            <span><strong>Cassia Sokcho</strong>（7/2–7/4，兩晚）</span>
+            <span>▶</span>
+          </button>
+          <div class="acc-panel">
+            <div class="acc-body">
+              <dl class="flat">
+                <dt>韓文</dt>
+                <dd>카시아 속초</dd>
+                <dt>Agoda</dt>
+                <dd>1699830242</dd>
+                <dt>房型</dt>
+                <dd>Two Bedroom Suite × 1 套</dd>
+                <dt>人數（訂單）</dt>
+                <dd>4 成人、0 兒童</dd>
+                <dt>住客（確認單）</dt>
+                <dd>WEI-CHE WU</dd>
+                <dt>地址</dt>
+                <dd class="copy-row">
+                  <span style="word-break:break-word">120 Daepohanghuimang-gil, Daepo-dong, Sokcho-si, Gangwon-do, 24901, Korea</span>
+                  <button type="button" class="copy" data-copy="120 Daepohanghuimang-gil, Daepo-dong, Sokcho-si, Gangwon-do, 24901, Korea">複製</button>
+                </dd>
+                <dt>電話</dt>
+                <dd class="copy-row">
+                  +82-33-680-8888
+                  <button type="button" class="copy" data-copy="+82-33-680-8888">複製</button>
+                </dd>
+                <dt>含</dt>
+                <dd>停車、Wi-Fi、雙人早餐（兒童早餐依現場）</dd>
+                <dt>付款</dt>
+                <dd>預計 2026-06-25 以 TWD 扣款，參考 KRW 1,545,398</dd>
+                <dt>取消</dt>
+                <dd>2026-06-27 前免費取消</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card searchable">
+        <h3 style="margin-top:0">人數欄位備註</h3>
+        <p class="muted" style="margin:0">樂高為 2 大 2 小；河南與束草 Agoda 為 4 成人。規劃門票、餐食、報到時請以實際同行成員與現場規定為準。</p>
+      </div>
+    </section>
+
+    <section id="sec-files">
+      <h2>資料夾原始檔對照</h2>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="files" id="fileTable">
+          <thead>
+            <tr>
+              <th>檔名</th>
+              <th>內容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="searchable">
+              <td><code>EVA Air … WANG CHIACHIN … .pdf</code></td>
+              <td>長榮票證／EMD</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>EVA Air … WU HENGYOU … .pdf</code></td>
+              <td>同上</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>EVA Air … WU HENGYU … .pdf</code></td>
+              <td>同上</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>EVA Air … WU WEICHE … .pdf</code></td>
+              <td>同上</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>Confirmation … 1710882041.pdf</code></td>
+              <td>河南 Aloha（Agoda）</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>Confirmation … 1699823143.pdf</code></td>
+              <td>樂高樂園飯店</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>Confirmation … 1699830242.pdf</code></td>
+              <td>Cassia Sokcho（Agoda）</td>
+            </tr>
+            <tr class="searchable">
+              <td><code>Gmail - [LOTTE rent-a-car] … .pdf</code></td>
+              <td>樂天租車確認信</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="sec-todo">
+      <h2>後續規劃待辦</h2>
+      <p class="muted" style="margin-top:-0.5rem;margin-bottom:0.75rem">勾選會儲存在此瀏覽器（localStorage）。</p>
+      <div class="card searchable" id="todoList">
+        <div class="check-item" data-id="t1">
+          <input type="checkbox" id="c1" />
+          <label for="c1">6/30 班機實際抵達與 11:30 取車動線（入境、行李、租車櫃台）</label>
+        </div>
+        <div class="check-item" data-id="t2">
+          <input type="checkbox" id="c2" />
+          <label for="c2">7/1 河南 → 春川駕駛時間、樂高／飯店 Check-in 時段</label>
+        </div>
+        <div class="check-item" data-id="t3">
+          <input type="checkbox" id="c3" />
+          <label for="c3">7/2 春川 → 束草路線與休息點</label>
+        </div>
+        <div class="check-item" data-id="t4">
+          <input type="checkbox" id="c4" />
+          <label for="c4">7/4 束草 → 仁川機場路程與還車＋報到緩衝</label>
+        </div>
+        <div class="check-item" data-id="t5">
+          <input type="checkbox" id="c5" />
+          <label for="c5">Hi-Pass（ETC）使用方式與餘額</label>
+        </div>
+        <div class="check-item" data-id="t6">
+          <input type="checkbox" id="c6" />
+          <label for="c6">護照、簽證／K-ETA（若適用）、IDP 效期與駕駛人約定</label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    江原道五日遊互動式總覽 · 與同目錄 PDF／<code>江原道五日遊_主要背景資料.md</code> 同步維護為佳
+  </footer>
+
+  <div class="toast" id="toast" role="status">已複製</div>
+
+  <script>
+    (function () {
+      var VERSION = "1.2.0";
+      var badge = document.getElementById("versionBadge");
+      if (badge) badge.textContent = "網頁版 " + VERSION;
+
+      /* Timeline toggle */
+      document.querySelectorAll(".tl-item .tl-head").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var item = btn.closest(".tl-item");
+          var open = item.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+
+      /* Tabs */
+      var tabBtns = document.querySelectorAll(".tabs [data-tab]");
+      tabBtns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var id = b.getAttribute("data-tab");
+          tabBtns.forEach(function (x) {
+            x.classList.toggle("active", x === b);
+            x.setAttribute("aria-selected", x === b ? "true" : "false");
+          });
+          document.querySelectorAll(".tab-panel").forEach(function (p) {
+            var on = p.id === id;
+            p.classList.toggle("active", on);
+            p.hidden = !on;
+          });
+        });
+      });
+
+      /* Accordion: one open optional — allow multiple; toggle */
+      document.querySelectorAll(".acc-item .acc-head").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var item = btn.closest(".acc-item");
+          var open = item.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          var chev = btn.querySelector("span:last-child");
+          if (chev) chev.textContent = open ? "▼" : "▶";
+        });
+      });
+
+      /* Copy */
+      var toast = document.getElementById("toast");
+      function showToast(msg) {
+        toast.textContent = msg || "已複製";
+        toast.classList.add("show");
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(function () { toast.classList.remove("show"); }, 1600);
+      }
+      document.querySelectorAll("button.copy").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var t = btn.getAttribute("data-copy");
+          if (!t) return;
+          navigator.clipboard.writeText(t).then(function () {
+            showToast("已複製到剪貼簿");
+          }).catch(function () {
+            showToast("複製失敗，請手動選取");
+          });
+        });
+      });
+
+      /* Todo localStorage */
+      var STORAGE = "gangwon-trip-todo-v1";
+      try {
+        var saved = JSON.parse(localStorage.getItem(STORAGE) || "{}");
+        document.querySelectorAll("#todoList .check-item").forEach(function (row) {
+          var id = row.getAttribute("data-id");
+          var cb = row.querySelector("input[type=checkbox]");
+          if (saved[id]) {
+            cb.checked = true;
+            row.classList.add("done");
+          }
+          cb.addEventListener("change", function () {
+            row.classList.toggle("done", cb.checked);
+            var o = JSON.parse(localStorage.getItem(STORAGE) || "{}");
+            o[id] = cb.checked;
+            localStorage.setItem(STORAGE, JSON.stringify(o));
+          });
+        });
+      } catch (e) {}
+
+      /* Scroll spy nav */
+      var navLinks = document.querySelectorAll("#mainNav a.nav");
+      var sections = [];
+      navLinks.forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ id: id, el: el, link: a });
+      });
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var id = en.target.id;
+            navLinks.forEach(function (l) {
+              l.classList.toggle("active", l.getAttribute("href") === "#" + id);
+            });
+          });
+        },
+        { rootMargin: "-40% 0px -45% 0px", threshold: 0 }
+      );
+      sections.forEach(function (s) { io.observe(s.el); });
+
+      /* Search: filter searchable blocks + highlight in main */
+      var searchInput = document.getElementById("globalSearch");
+      var searchable = document.querySelectorAll(".searchable");
+      function stripHighlight() {
+        document.querySelectorAll("mark.hl").forEach(function (m) {
+          var p = m.parentNode;
+          p.replaceChild(document.createTextNode(m.textContent), m);
+          p.normalize();
+        });
+      }
+      function highlightText(node, qRaw) {
+        if (!qRaw || qRaw.length < 2) return;
+        var esc = qRaw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        var splitRe = new RegExp("(" + esc + ")", "gi");
+        var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, {
+          acceptNode: function (n) {
+            if (!n.nodeValue.trim() || !n.parentElement || n.parentElement.closest("button, script, style, mark")) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        var toProc = [];
+        while (walker.nextNode()) toProc.push(walker.currentNode);
+        toProc.forEach(function (textNode) {
+          var text = textNode.nodeValue;
+          if (!new RegExp(esc, "i").test(text)) return;
+          var span = document.createElement("span");
+          text.split(splitRe).forEach(function (part) {
+            if (!part) return;
+            if (part.toLowerCase() === qRaw.toLowerCase()) {
+              var mk = document.createElement("mark");
+              mk.className = "hl";
+              mk.appendChild(document.createTextNode(part));
+              span.appendChild(mk);
+            } else {
+              span.appendChild(document.createTextNode(part));
+            }
+          });
+          textNode.parentNode.replaceChild(span, textNode);
+        });
+      }
+      function runSearch() {
+        var q = (searchInput.value || "").trim().toLowerCase();
+        stripHighlight();
+        if (!q) {
+          searchable.forEach(function (el) {
+            el.classList.remove("hidden");
+            el.style.display = "";
+          });
+          document.querySelectorAll("#fileTable tbody tr").forEach(function (tr) {
+            tr.classList.remove("hidden");
+          });
+          return;
+        }
+        searchable.forEach(function (el) {
+          var kw = (el.getAttribute("data-keywords") || "") + " " + el.textContent;
+          var match = kw.toLowerCase().indexOf(q) !== -1;
+          if (el.tagName === "TR") {
+            trClassToggle(el, match);
+          } else {
+            el.style.display = match ? "" : "none";
+          }
+          if (match) highlightText(el, searchInput.value.trim());
+        });
+      }
+      function trClassToggle(tr, match) {
+        tr.classList.toggle("hidden", !match);
+      }
+      var t;
+      searchInput.addEventListener("input", function () {
+        clearTimeout(t);
+        t = setTimeout(runSearch, 200);
+      });
+
+      /* Open tab from hash */
+      if (location.hash === "#sec-tabs") {
+        /* default flight ok */
+      }
+    })();
+  </script>
+</body>
+</html>
