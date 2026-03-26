@@ -186,6 +186,11 @@
       border: 2px solid #fff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
+    .tl-head-deco img.tl-deco-cartoon {
+      object-fit: contain;
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 0.12rem;
+    }
     .tl-head-deco .tl-svg {
       width: 2.15rem;
       height: 2.15rem;
@@ -486,7 +491,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.18</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.19</span>
       </h1>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
@@ -511,10 +516,11 @@
         <!-- 6/30 -->
         <div class="tl-item open" id="day-630">
           <button type="button" class="tl-head" aria-expanded="true">
+            <!-- 6/30 標題圖：FAA 公版 Q 版飛機 (PD) | Twemoji 🚙🏬 (CC BY 4.0, Twitter) via Wikimedia Commons -->
             <div class="tl-head-deco" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
-              <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
-              <img src="https://images.unsplash.com/photo-1519641471654-76ce3d3ad6c6?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/FAA_cartoon_plane.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Twemoji12_1f699.svg/240px-Twemoji12_1f699.svg.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Twemoji12_1f3ec.svg/240px-Twemoji12_1f3ec.svg.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
             </div>
             <div class="tl-head-row">
               <span class="tl-date">6/30（一）</span>
@@ -888,7 +894,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.18";
+      var VERSION = "1.15.19";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
