@@ -178,6 +178,45 @@
       gap: 0.35rem;
       margin-bottom: 0.45rem;
     }
+    /* 6/30：小圖與日期同一列，省一列高度 */
+    .tl-head-row--inline-deco {
+      align-items: center;
+    }
+    .tl-head-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.45rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .tl-head-deco--inline {
+      margin-bottom: 0;
+      gap: 0.28rem;
+    }
+    /* 6/30：圖示與示意文字成組（不更動 tl-sum／時間軸內文） */
+    .tl-head-deco--labeled {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.65rem;
+      max-width: 100%;
+    }
+    .tl-deco-pair {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      font-size: clamp(0.76rem, 2.6vw, 0.86rem);
+      font-weight: 750;
+      color: #831843;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .tl-deco-pair .tl-deco-cartoon {
+      width: 1.85rem;
+      height: 1.85rem;
+      flex-shrink: 0;
+    }
     .tl-head-deco img {
       width: 2.45rem;
       height: 2.45rem;
@@ -479,6 +518,85 @@
       height: auto;
       margin: 0;
       vertical-align: bottom;
+      cursor: zoom-in;
+    }
+    /* 點圖放大：全螢幕橫滑（與內嵌輪播相同手勢） */
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(15, 23, 42, 0.94);
+      display: flex;
+      flex-direction: column;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      box-sizing: border-box;
+    }
+    .gallery-lightbox[hidden] {
+      display: none !important;
+    }
+    .gallery-lightbox-close {
+      position: absolute;
+      top: max(0.35rem, env(safe-area-inset-top));
+      right: max(0.35rem, env(safe-area-inset-right));
+      z-index: 2;
+      width: 2.75rem;
+      height: 2.75rem;
+      min-width: var(--tap, 44px);
+      min-height: var(--tap, 44px);
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .gallery-lightbox-close:hover,
+    .gallery-lightbox-close:focus-visible {
+      background: rgba(255, 255, 255, 0.32);
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+    .gallery-lightbox-scroller {
+      flex: 1;
+      width: 100%;
+      min-height: 0;
+      margin-top: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      display: flex;
+      scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    }
+    .gallery-lightbox-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      margin: 0;
+      padding: 0.5rem 0.35rem 1rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-lightbox-slide img {
+      max-width: 100%;
+      max-height: min(88vh, calc(100dvh - 3.5rem));
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      vertical-align: bottom;
+      pointer-events: none;
+      user-select: none;
     }
     .hotel-gallery-hint {
       margin: 0 0 0.55rem;
@@ -537,7 +655,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.23</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.34</span>
       </h1>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
@@ -562,17 +680,28 @@
         <!-- 6/30 -->
         <div class="tl-item open" id="day-630">
           <button type="button" class="tl-head" aria-expanded="true">
-            <!-- 6/30 標題圖：Twemoji ✈️🚙🏬 SVG（CC BY 4.0）via Wikimedia Commons，同系列較一致、易顯示 -->
-            <div class="tl-head-deco" aria-hidden="true">
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Twemoji12_2708.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Twemoji12_1f699.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Twemoji12_1f3ec.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
-            </div>
-            <div class="tl-head-row">
-              <span class="tl-date">6/30（一）</span>
+            <div class="tl-head-row tl-head-row--inline-deco">
+              <div class="tl-head-title-wrap">
+                <span class="tl-date">6/30（二）</span>
+                <!-- Twemoji ✈️🚙🏨（CC BY 4.0）Wikimedia Commons；旁邊文字僅示意位置 -->
+                <div class="tl-head-deco tl-head-deco--inline tl-head-deco--labeled" aria-hidden="true">
+                  <span class="tl-deco-pair">
+                    <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Twemoji12_2708.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
+                    <span>抵達仁川(飛機)</span>
+                  </span>
+                  <span class="tl-deco-pair">
+                    <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Twemoji12_1f699.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
+                    <span>11:30取車(汽車)</span>
+                  </span>
+                  <span class="tl-deco-pair">
+                    <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/6/64/Twemoji12_1f3e8.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
+                    <span>Aloha Hotel (旅館)</span>
+                  </span>
+                </div>
+              </div>
               <span class="tl-chev" aria-hidden="true">▶</span>
             </div>
-            <span class="tl-sum">抵達仁川｜11:30 取車｜Starfield 江南｜夜宿河南Aloha Hotel</span>
+            <span class="tl-sum">抵達仁川｜11:30 取車｜Starfield 河南｜夜宿河南Aloha Hotel</span>
           </button>
           <div class="tl-body">
                 <ul class="time-axis">
@@ -607,7 +736,7 @@
                         <li>
                           <div class="inline-axis-row">
                             <span class="inline-axis-when">11:30取車</span>
-                            <div class="inline-axis-detail">樂天租車 -->開往首爾方向。</div>
+                            <div class="inline-axis-detail">樂天租車 -->開往河南（하남）／飯店方向。</div>
                           </div>
                         </li>
                       </ul>
@@ -616,31 +745,31 @@
                   <li>
                     <span class="ta-when">午餐</span>
                     <div class="ta-detail">
-                      <p><strong>Starfield 江南</strong>大百貨館內用餐。</p>
+                      <p><strong>Starfield 河南</strong>（<strong>스타필드 하남</strong>）館內<strong>美食街或餐廳</strong>用餐。</p>
                       <div class="fold fold--nested">
                         <button type="button" class="fold-head" aria-expanded="false">
-                          <span class="fold-title">江南 Starfield 簡介</span>
+                          <span class="fold-title">Starfield 河南（하남）簡介</span>
                           <span class="fold-chev" aria-hidden="true">▶</span>
                         </button>
                         <div class="fold-panel">
-                          <!-- Starfield／COEX 實景：Wikimedia Commons，多為 CC BY-SA 4.0，作者見各檔案頁 -->
-                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="Starfield COEX 一帶實景，可左右滑動" tabindex="0">
+                          <!-- Starfield 河南：標誌＋同品牌水原店參考圖＋河南 미사역／Union／美沙湖；Wikimedia Commons，授權見各檔案頁 -->
+                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="Starfield 河南與周邊（미사）實景，可左右滑動；點照片可放大後左右滑" tabindex="0">
                             <div class="hotel-gallery-track">
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Starfield_library_1.jpg/960px-Starfield_library_1.jpg" alt="星空圖書館 Starfield Library 1／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Starfield_library_2.jpg/960px-Starfield_library_2.jpg" alt="星空圖書館 2／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%80.jpg/960px-20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%80.jpg" alt="Starfield COEX 商場內部 3／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%802.jpg/960px-20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%802.jpg" alt="Starfield COEX 商場內部 4／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%80_3.jpg/960px-20250705_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%82%B4%EB%B6%80_3.jpg" alt="Starfield COEX 商場內部 5／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Seoul_COEX_Mall.jpg/960px-Seoul_COEX_Mall.jpg" alt="首爾 COEX 商場 6／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/COEX_Mall_entry_%285464343844%29.jpg/960px-COEX_Mall_entry_%285464343844%29.jpg" alt="COEX 商場入口 7／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/20250705_%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80.jpg/960px-20250705_%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80.jpg" alt="星空圖書館（별마당）8／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/20250613_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%B6%80%EA%B7%BC.jpg/960px-20250613_%EC%BD%94%EC%97%91%EC%8A%A4%EB%AA%B0_%EB%B6%80%EA%B7%BC.jpg" alt="COEX／Starfield 周邊街景 9／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
-                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Starfield_library_4.jpg/960px-Starfield_library_4.jpg" alt="星空圖書館 10／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Starfield_%28shopping_mall%29_Logotype.png" alt="Starfield 官方標誌 1／10" width="960" height="320" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Starfield_Suwon.jpg/960px-Starfield_Suwon.jpg" alt="Starfield 同系列購物中心外觀參考（水原店，非河南店）2／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Starfield_Suwon_library.jpg/960px-Starfield_Suwon_library.jpg" alt="Starfield 同系列館內圖書空間參考（水原店）3／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_%EC%A0%84%EA%B2%BD_%EC%82%AC%EC%A7%84.JPG/960px-%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_%EC%A0%84%EA%B2%BD_%EC%82%AC%EC%A7%84.JPG" alt="河南 미사·Union Square／유니온 타워周邊 4／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_%281%29.JPG/960px-%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_%281%29.JPG" alt="유니온 타워建物（河南 미사商圈）5／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_3%EC%B8%B5_%281%29.JPG/960px-%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C_3%EC%B8%B5_%281%29.JPG" alt="유니온 타워館內商場一帶（河南）6／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C%EC%97%90%EC%84%9C_%EB%B3%B8_%EC%A0%84%EA%B2%BD_%281%29.JPG/960px-%EC%9C%A0%EB%8B%88%EC%98%A8_%ED%83%80%EC%9B%8C%EC%97%90%EC%84%9C_%EB%B3%B8_%EC%A0%84%EA%B2%BD_%281%29.JPG" alt="自 유니온 타워俯瞰河南周邊 7／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/20210326_%EB%AF%B8%EC%82%AC%EC%97%AD.jpg/960px-20210326_%EB%AF%B8%EC%82%AC%EC%97%AD.jpg" alt="신분당선 미사역外觀（Starfield 河南鄰近）8／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/20230719_%EB%AF%B8%EC%82%AC%EC%97%AD_%EC%8A%B9%EA%B0%95%EC%9E%A5.jpg/960px-20230719_%EB%AF%B8%EC%82%AC%EC%97%AD_%EC%8A%B9%EA%B0%95%EC%9E%A5.jpg" alt="미사역月台（河南）9／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/%EB%AF%B8%EC%82%AC%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90.jpg/960px-%EB%AF%B8%EC%82%AC%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90.jpg" alt="美沙湖公園一帶（河南 미사）10／10" width="960" height="720" loading="lazy" decoding="async" /></figure>
                             </div>
                           </div>
-                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）· 圖片來源 <a href="https://commons.wikimedia.org/wiki/Category:COEX_Mall" rel="noopener noreferrer" target="_blank">Wikimedia Commons</a>（COEX／Starfield）</p>
-                          <p class="fold-lead" style="margin:0"><strong>Starfield 江南</strong>（也常稱 <strong>Starfield COEX Mall</strong>／韓文 <strong>스타필드 코엑스몰</strong>）是首爾<strong>江南</strong>一帶的<strong>大型購物商場</strong>，與 <strong>COEX</strong> 會展、圖書館那一區相連，約在<strong>地鐵三星站（삼성）</strong>周邊。</p>
-                          <p style="margin:0.5rem 0 0;font-size:var(--fs-small);color:var(--ink-muted);line-height:1.5">館內有許多餐廳與輕食，也有逛街與休閒空間；我們<strong>今天在這裡吃午餐</strong>，下午會繼續在館內活動（含<strong>三樓運動天地</strong>）。實際動線與停車以當天爸媽導航為準。</p>
+                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）· <strong>點圖可放大</strong>，放大後亦可左右滑 · 圖片來源 <a href="https://commons.wikimedia.org/wiki/File:Starfield_Suwon.jpg" rel="noopener noreferrer" target="_blank">Starfield 水原店</a>、<a href="https://commons.wikimedia.org/wiki/Category:Union_tower" rel="noopener noreferrer" target="_blank">Union 塔／미사역</a> 等 · <a href="https://commons.wikimedia.org/" rel="noopener noreferrer" target="_blank">Wikimedia Commons</a>（其中 2–3 張為<strong>同品牌水原店</strong>參考，河南店內裝以現場為準）</p>
+                          <p class="fold-lead" style="margin:0"><strong>Starfield 河南</strong>（<strong>Starfield Hanam</strong>／<strong>스타필드 하남</strong>）在<strong>京畿道河南市 미사</strong>一帶，是<strong>新世界</strong>系統的大型購物主題園區（約 2016 年開幕），規模大、店鋪與餐飲選擇多。館內常見亮點包含需<strong>另購票</strong>的<strong>運動遊樂（Sports Monster）</strong>、結合戲水與汗蒸等的<strong>Aquafield</strong>，以及<strong>電影院（Megabox）</strong>、書店等；細節與營業時間以當日現場與 <a href="https://www.starfield.co.kr/hanam/" rel="noopener noreferrer" target="_blank">starfield.co.kr／hanam 官網</a> 為準。這裡與今晚 <strong>Aloha Hotel</strong> 同區，通常<strong>開車一小段就到</strong>。若改去首爾<strong>江南</strong>的 <strong>Starfield COEX</strong>，離河南飯店常要<strong>約 40–70 分鐘以上</strong>（路況差異大），就<strong>遠很多了</strong>。</p>
+                          <p style="margin:0.5rem 0 0;font-size:var(--fs-small);color:var(--ink-muted);line-height:1.5">我們<strong>今天在此午餐</strong>，下午可在館內逛街，或視體力與意願安排 <strong>Sports Monster</strong>／<strong>Aquafield</strong>（皆須額外費用與時間，爸媽現場決定）。<strong>停車與動線</strong>以當天導航與商場指引為準。</p>
                         </div>
                       </div>
                     </div>
@@ -648,7 +777,35 @@
                   <li>
                     <span class="ta-when">下午行程</span>
                     <div class="ta-detail">
-                      <p>館內逛街、<strong>三樓運動天地</strong>。</p>
+                      <p>館內逛街；可視體力到<strong>三樓運動天地</strong>一帶玩 <strong>Sports Monster</strong>（<strong>스포츠몬스터</strong>），或改選 <strong>Aquafield</strong> 等（皆<strong>另計票價</strong>，樓層與動線以現場為準）。</p>
+                      <div class="fold fold--nested">
+                        <button type="button" class="fold-head" aria-expanded="false">
+                          <span class="fold-title">三樓運動天地｜Sports Monster 簡介</span>
+                          <span class="fold-chev" aria-hidden="true">▶</span>
+                        </button>
+                        <div class="fold-panel">
+                          <!-- 室內運動遊樂氛圍：Wikimedia Commons，均非 Starfield 河南實景 -->
+                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="室內運動遊樂氛圍參考圖，可左右滑動；點照片可放大後左右滑" tabindex="0">
+                            <div class="hotel-gallery-track">
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/VAUNCE_trampoline_park.jpg/960px-VAUNCE_trampoline_park.jpg" alt="韓國連鎖彈跳床樂園氛圍參考 1／10（非河南店）" width="960" height="960" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/House_of_Air_The_Matrix.jpg/960px-House_of_Air_The_Matrix.jpg" alt="大型連結彈跳床空間氛圍參考 2／10（美國舊金山，非河南店）" width="960" height="640" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sky_Zone_Trampoline_Park%2C_Lakeland%2C_Florida.jpg/960px-Sky_Zone_Trampoline_Park%2C_Lakeland%2C_Florida.jpg" alt="室內彈跳床樂園氛圍參考 3／10（美國，非河南店）" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Trampoline_Park.jpg/960px-Trampoline_Park.jpg" alt="彈跳床樂園氛圍參考 4／10（非河南店）" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Climbing_gym_%E2%80%93_Panorama_%28Greg_Zaal_and_Jarod_Guest_via_Poly_Haven%29.jpg/960px-Climbing_gym_%E2%80%93_Panorama_%28Greg_Zaal_and_Jarod_Guest_via_Poly_Haven%29.jpg" alt="室內攀岩館全景氛圍參考 5／10（3D 參考場景，非河南店）" width="960" height="480" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Indoor_Climbing_Wall_Bouldering_Mats.jpg/960px-Indoor_Climbing_Wall_Bouldering_Mats.jpg" alt="抱石墊與攀岩牆氛圍參考 6／10（非河南店）" width="960" height="644" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/2008-08-05_Vertical_Edge_Climbing_Center.jpg/960px-2008-08-05_Vertical_Edge_Climbing_Center.jpg" alt="室內攀岩場氛圍參考 7／10（美國，非河南店）" width="960" height="640" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Climbing_wall_20211103_145408.jpg/960px-Climbing_wall_20211103_145408.jpg" alt="室內抱石場氛圍參考 8／10（日本東京，非河南店）" width="960" height="540" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Man_climbing_in_bouldering_gym.jpg/960px-Man_climbing_in_bouldering_gym.jpg" alt="抱石攀岩氛圍參考 9／10（美國西雅圖，非河南店）" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Crack_Climbing_Indoor.jpg/960px-Crack_Climbing_Indoor.jpg" alt="室內攀岩訓練設施氛圍參考 10／10（非河南店）" width="960" height="720" loading="lazy" decoding="async" /></figure>
+                            </div>
+                          </div>
+                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）· <strong>點圖可放大</strong>，放大後亦可左右滑 · 圖片為<strong>室內運動遊樂氛圍參考</strong>（含韓國 VAUNCE 彈跳床等），<strong>非</strong> Starfield 河南實景；授權見 <a href="https://commons.wikimedia.org/" rel="noopener noreferrer" target="_blank">Wikimedia Commons</a> 各檔案頁</p>
+                          <p class="fold-lead" style="margin:0">大家口頭說的<strong>「三樓運動天地」</strong>，在河南 Starfield 多半對應需<strong>另外買票</strong>的大型體能遊樂 <strong>Sports Monster</strong>（<strong>스포츠몬스터</strong>）：結合<strong>彈跳床、攀岩、繩索／體能關卡、球類與數位運動</strong>等，適合放電；實際<strong>樓層、票價、身高年齡限制與時段</strong>以當日商場告示與 <a href="https://www.starfield.co.kr/hanam/" rel="noopener noreferrer" target="_blank">Starfield 河南官網</a>／現場為準（官網亦可能連到品牌方資訊）。若不想花太久或排隊，也可只在館內逛街、吃點心。</p>
+                          <p style="margin:0.45rem 0 0;font-size:var(--fs-small);color:var(--ink-muted);line-height:1.5"><strong>票種怎麼算</strong>：多為<strong>計時制入場／利用券</strong>（例如常見的 2／3 小時等方案），在<strong>購買時段內</strong>館內<strong>多數體驗可一票玩到底</strong>，一般<strong>不是</strong>遊樂園那種「每個設施各付一次」的分項計價為主。<strong>超過購買時段</strong>通常要<strong>加價</strong>（依超時分鐘或區間計，以售票處／現場告示為準）。若有<strong>單獨課程、租借或限定活動</strong>，可能<strong>另計費用</strong>—出發前請再對照現場與官網最新公告。</p>
+                          <p style="margin:0.45rem 0 0;font-size:var(--fs-small);line-height:1.5"><strong>影片</strong>：<a href="https://www.youtube.com/watch?v=BWlBoPN05k0" rel="noopener noreferrer" target="_blank">Sports Monster 介紹（YouTube）</a></p>
+                          <p style="margin:0.5rem 0 0;font-size:var(--fs-small);color:var(--ink-muted);line-height:1.5"><strong>備註</strong>：部分資料將 Sports Monster 標示在<strong>較高樓層或屋頂區</strong>，與「三樓」說法可能因改裝或動線而不同，<strong>以現場指標為準</strong>。</p>
+                        </div>
+                      </div>
                     </div>
                   </li>
                   <li>
@@ -661,7 +818,7 @@
                           <span class="fold-chev" aria-hidden="true">▶</span>
                         </button>
                         <div class="fold-panel">
-                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="河南 Aloha Hotel 照片，可左右滑動" tabindex="0">
+                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="河南 Aloha Hotel 照片，可左右滑動；點照片可放大後左右滑" tabindex="0">
                             <div class="hotel-gallery-track">
                               <figure class="hotel-gallery-slide"><img src="aloha%20hotel.jpg" alt="河南 Aloha Hotel 照片 1／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
                               <figure class="hotel-gallery-slide"><img src="aloha%20hotel2.jpg" alt="河南 Aloha Hotel 照片 2／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
@@ -675,7 +832,7 @@
                               <figure class="hotel-gallery-slide"><img src="aloha%20hotel10.jpg" alt="河南 Aloha Hotel 照片 10／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
                             </div>
                           </div>
-                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）</p>
+                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）· <strong>點圖可放大</strong>，放大後亦可左右滑</p>
                           <p class="fold-lead" style="margin:0">首爾近郊<strong>河南市</strong>，<strong>兩間房</strong>一家人，可停車；明天一早退房往春川。</p>
                         </div>
                       </div>
@@ -770,7 +927,7 @@
               <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
             </div>
             <div class="tl-head-row">
-              <span class="tl-date">7/2（三）</span>
+              <span class="tl-date">7/2（四）</span>
               <span class="tl-chev" aria-hidden="true">▶</span>
             </div>
             <span class="tl-sum">晚退房離樂高｜雪嶽山纜車（先吃再搭）｜入住束草海邊</span>
@@ -834,7 +991,7 @@
               <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
             </div>
             <div class="tl-head-row">
-              <span class="tl-date">7/3（四）</span>
+              <span class="tl-date">7/3（五）</span>
               <span class="tl-chev" aria-hidden="true">▶</span>
             </div>
             <span class="tl-sum">束草東海岸｜續住同飯店｜豆豆生日 🎂</span>
@@ -889,7 +1046,7 @@
               <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=70" alt="" width="36" height="36" loading="lazy" decoding="async" />
             </div>
             <div class="tl-head-row">
-              <span class="tl-date">7/4（五）</span>
+              <span class="tl-date">7/4（六）</span>
               <span class="tl-chev" aria-hidden="true">▶</span>
             </div>
             <span class="tl-sum">退房｜開回仁川｜16:00 前還車｜飛回台灣</span>
@@ -963,6 +1120,11 @@
     </section>
   </main>
 
+  <div id="galleryLightbox" class="gallery-lightbox" hidden role="dialog" aria-modal="true" aria-label="放大檢視照片（可左右滑動）">
+    <button type="button" class="gallery-lightbox-close" aria-label="關閉放大檢視">×</button>
+    <div class="gallery-lightbox-scroller" tabindex="-1" aria-roledescription="輪播"></div>
+  </div>
+
   <footer>
     <p style="margin:0 0 0.5rem;font-weight:800;color:#831843">豆豆、皮皮，旅途平安！</p>
     <p style="margin:0;font-size:0.85rem">訂位、電話與地址等細節由爸媽另外留檔；這一頁給豆豆、皮皮看<strong>重點與時間</strong>就好。</p>
@@ -971,7 +1133,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.23";
+      var VERSION = "1.15.34";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
@@ -1007,6 +1169,80 @@
           }
         });
       });
+
+      (function galleryLightbox() {
+        var lb = document.getElementById("galleryLightbox");
+        if (!lb) return;
+        var scroller = lb.querySelector(".gallery-lightbox-scroller");
+        var closeBtn = lb.querySelector(".gallery-lightbox-close");
+        var prevFocus = null;
+
+        function openLightbox(galleryEl, startIndex) {
+          var slides = galleryEl.querySelectorAll(".hotel-gallery-slide img");
+          if (!slides.length) return;
+          scroller.innerHTML = "";
+          for (var i = 0; i < slides.length; i++) {
+            var fig = document.createElement("figure");
+            fig.className = "gallery-lightbox-slide";
+            var im = document.createElement("img");
+            im.src = slides[i].currentSrc || slides[i].src;
+            im.alt = slides[i].alt || "";
+            fig.appendChild(im);
+            scroller.appendChild(fig);
+          }
+          prevFocus = document.activeElement;
+          lb.hidden = false;
+          document.body.style.overflow = "hidden";
+          closeBtn.focus();
+          var idx = Math.max(0, Math.min(startIndex, slides.length - 1));
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              scroller.scrollLeft = idx * scroller.clientWidth;
+            });
+          });
+        }
+
+        function closeLightbox() {
+          if (lb.hidden) return;
+          lb.hidden = true;
+          document.body.style.overflow = "";
+          scroller.innerHTML = "";
+          if (prevFocus && typeof prevFocus.focus === "function") prevFocus.focus();
+          prevFocus = null;
+        }
+
+        document.querySelectorAll(".hotel-gallery .hotel-gallery-slide img").forEach(function (img) {
+          img.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var gallery = img.closest(".hotel-gallery");
+            if (!gallery) return;
+            var list = gallery.querySelectorAll(".hotel-gallery-slide img");
+            var idx = Array.prototype.indexOf.call(list, img);
+            openLightbox(gallery, idx >= 0 ? idx : 0);
+          });
+        });
+
+        closeBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeLightbox();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (lb.hidden) return;
+          if (e.key === "Escape") {
+            e.preventDefault();
+            closeLightbox();
+            return;
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            scroller.scrollBy({ left: scroller.clientWidth, behavior: "smooth" });
+          } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            scroller.scrollBy({ left: -scroller.clientWidth, behavior: "smooth" });
+          }
+        });
+      })();
 
       var navLinks = document.querySelectorAll("#mainNav a.nav");
       var obs = new IntersectionObserver(
