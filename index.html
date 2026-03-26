@@ -151,19 +151,6 @@
       white-space: nowrap;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
-    .kid-sub {
-      margin: 0.65rem 0 0;
-      padding: 0.5rem 0.75rem;
-      font-size: clamp(0.98rem, 3.2vw, 1.12rem);
-      font-weight: 800;
-      color: #831843;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      background: rgba(255, 255, 255, 0.72);
-      border-radius: 16px;
-      border: 2px solid rgba(244, 114, 182, 0.45);
-      box-shadow: 0 4px 0 rgba(251, 207, 232, 0.6);
-    }
     .hdr-chips {
       list-style: none;
       margin: 0.55rem 0 0;
@@ -183,19 +170,6 @@
       border: 2px solid #38bdf8;
       border-radius: 999px;
       box-shadow: 0 2px 0 #bae6fd;
-    }
-    .kid-hero {
-      padding: 0.75rem 1rem 0.9rem;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 248, 252, 0.98) 100%);
-      border-bottom: 2px dashed var(--line);
-    }
-    .kid-hero .hero-lead {
-      margin: 0;
-      text-align: center;
-      font-size: var(--fs-small);
-      font-weight: 700;
-      color: var(--ink-muted);
-      line-height: 1.5;
     }
     .tl-head-deco {
       display: flex;
@@ -499,9 +473,8 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.1</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.2</span>
       </h1>
-      <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
         <li>桃園 TPE ⇄ 仁川 ICN</li>
@@ -509,10 +482,6 @@
       </ul>
     </div>
   </header>
-
-  <div class="kid-hero">
-    <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖。<strong>點開某一天</strong>，下面就會看到<strong>早餐、上午行程、午餐、下午行程、住宿、晚餐</strong>六格；還沒決定的會寫<strong>未定</strong>喔～</p>
-  </div>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
     <a class="nav active" href="#day-630">6/30</a>
@@ -888,7 +857,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.1";
+      var VERSION = "1.15.2";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
