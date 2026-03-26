@@ -444,15 +444,46 @@
       font-size: var(--fs-small);
     }
     .fold--nested .fold-panel .fold-lead { margin-top: 0; }
-    .fold--nested .fold-panel .hotel-photo {
-      display: block;
+    .hotel-gallery {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
       width: 100%;
       max-width: 20rem;
-      height: auto;
-      margin: 0 auto 0.55rem;
+      margin: 0 auto 0.35rem;
       border-radius: 12px;
       border: 2px solid #fce7f3;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+    .hotel-gallery-track {
+      display: flex;
+      gap: 0;
+    }
+    .hotel-gallery-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      margin: 0;
+      padding: 0;
+    }
+    .hotel-gallery-slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      vertical-align: bottom;
+    }
+    .hotel-gallery-hint {
+      margin: 0 0 0.55rem;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      text-align: center;
+      line-height: 1.4;
     }
     @media (max-width: 520px) {
       ul.time-axis .ta-detail .inline-axis-row {
@@ -501,7 +532,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.20</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.21</span>
       </h1>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
@@ -609,7 +640,21 @@
                           <span class="fold-chev" aria-hidden="true">▶</span>
                         </button>
                         <div class="fold-panel">
-                          <img class="hotel-photo" src="aloha%20hotel.jpg" alt="河南 Aloha Hotel" width="1024" height="768" loading="lazy" decoding="async" />
+                          <div class="hotel-gallery" role="region" aria-roledescription="輪播" aria-label="河南 Aloha Hotel 照片，可左右滑動" tabindex="0">
+                            <div class="hotel-gallery-track">
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel.jpg" alt="河南 Aloha Hotel 照片 1／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel2.jpg" alt="河南 Aloha Hotel 照片 2／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel3.jpg" alt="河南 Aloha Hotel 照片 3／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel4.jpg" alt="河南 Aloha Hotel 照片 4／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel5.jpg" alt="河南 Aloha Hotel 照片 5／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel6.jpg" alt="河南 Aloha Hotel 照片 6／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel7.jpg" alt="河南 Aloha Hotel 照片 7／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel8.jpg" alt="河南 Aloha Hotel 照片 8／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel9.jpg" alt="河南 Aloha Hotel 照片 9／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                              <figure class="hotel-gallery-slide"><img src="aloha%20hotel10.jpg" alt="河南 Aloha Hotel 照片 10／10" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+                            </div>
+                          </div>
+                          <p class="hotel-gallery-hint" aria-hidden="true">左右滑動看照片（共 10 張）</p>
                           <p class="fold-lead" style="margin:0">首爾近郊<strong>河南市</strong>，<strong>兩間房</strong>一家人，可停車；明天一早退房往春川。</p>
                         </div>
                       </div>
@@ -905,7 +950,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.20";
+      var VERSION = "1.15.21";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
@@ -927,6 +972,18 @@
           var fold = btn.closest(".fold");
           var open = fold.classList.toggle("open");
           btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+
+      document.querySelectorAll(".hotel-gallery").forEach(function (el) {
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
+          } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
+          }
         });
       });
 
