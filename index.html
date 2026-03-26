@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#ffe8f0" />
-  <title>豆豆皮皮｜江原道五日遊</title>
+  <title>豆豆皮皮｜江原道五日遊 — 家庭冒險地圖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --cream: #fff8f2;
@@ -49,38 +49,185 @@
     a { color: #c2417d; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
     a:active { opacity: 0.85; }
 
-    header {
-      padding: calc(1.1rem + env(safe-area-inset-top, 0)) 1.15rem 1rem;
-      background: linear-gradient(180deg, var(--white) 0%, var(--cream-deep) 100%);
-      border-bottom: 1px solid var(--line);
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      padding: calc(0.85rem + env(safe-area-inset-top, 0)) 1rem 0;
+      background: linear-gradient(165deg, #e0f2fe 0%, #fce7f3 38%, #fff8e7 72%, #fff 100%);
+      border-bottom: none;
     }
-    header h1 {
+    .site-header-sky {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 120% 80% at 15% 20%, rgba(253, 224, 71, 0.35), transparent 50%),
+        radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 42%),
+        radial-gradient(circle at 8% 55%, rgba(186, 230, 253, 0.5), transparent 35%),
+        radial-gradient(circle at 92% 60%, rgba(251, 207, 232, 0.45), transparent 38%);
+    }
+    .site-header-float {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.92;
+      z-index: 0;
+    }
+    .site-header-float--l {
+      left: -0.25rem;
+      bottom: 2.25rem;
+      width: clamp(4.5rem, 22vw, 7rem);
+      height: auto;
+      filter: drop-shadow(2px 4px 0 rgba(255, 255, 255, 0.9));
+    }
+    .site-header-float--r {
+      right: -0.35rem;
+      top: 0.65rem;
+      width: clamp(4.75rem, 24vw, 7.5rem);
+      height: auto;
+      filter: drop-shadow(-2px 3px 0 rgba(255, 255, 255, 0.85));
+    }
+    @media (min-width: 520px) {
+      .site-header-float--l { left: 0.5rem; }
+      .site-header-float--r { right: 0.5rem; }
+    }
+    .site-header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 26rem;
+      margin: 0 auto;
+      padding: 0 0.35rem 0.65rem;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .site-header-content { max-width: 32rem; }
+    }
+    .site-header-eyebrow {
+      margin: 0 0 0.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: clamp(0.78rem, 2.6vw, 0.88rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0e7490;
+    }
+    .site-header-eyebrow .eyebrow-star {
+      color: #db2777;
+      font-size: 1.05em;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    .site-title {
       margin: 0;
-      font-size: var(--fs-title);
-      font-weight: 750;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      line-height: 1.35;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      line-height: 1.15;
     }
-    header h1 .ver {
-      display: inline-block;
-      margin-left: 0.4rem;
-      padding: 0.15rem 0.55rem;
-      background: var(--bubble);
-      border: 2px solid #f9a8d4;
+    .site-title-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.85rem;
+      background: linear-gradient(180deg, #fff 0%, #fef3c7 100%);
+      border: 3px solid #f9a8d4;
       border-radius: 999px;
-      font-size: clamp(0.75rem, 2.8vw, 0.88rem);
-      font-weight: 800;
+      font-size: clamp(0.82rem, 3vw, 0.95rem);
+      font-weight: 900;
       color: #9d174d;
-      vertical-align: middle;
+      box-shadow: 0 3px 0 #fbcfe8, 0 6px 14px rgba(190, 24, 93, 0.12);
+      letter-spacing: 0.04em;
+    }
+    .site-title-brand .brand-emoji {
+      font-size: 1.15em;
+      line-height: 1;
+    }
+    .site-title-core {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.08rem;
+    }
+    .site-title-line1 {
+      font-size: clamp(2rem, 9.5vw, 3.15rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      background: linear-gradient(120deg, #be185d 0%, #a855f7 42%, #0891b2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 2px 0 #fff) drop-shadow(0 4px 0 rgba(251, 207, 232, 0.85));
+    }
+    .site-title-line2 {
+      font-size: clamp(1.35rem, 6vw, 2rem);
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+      text-shadow:
+        2px 2px 0 #fff,
+        3px 3px 0 #fbcfe8,
+        0 0 24px rgba(251, 207, 232, 0.6);
+    }
+    .site-title .ver {
+      display: inline-block;
+      margin-top: 0.15rem;
+      padding: 0.2rem 0.65rem;
+      background: var(--white);
+      border: 2px dashed #f472b6;
+      border-radius: 999px;
+      font-size: clamp(0.72rem, 2.6vw, 0.85rem);
+      font-weight: 900;
+      color: #9d174d;
       white-space: nowrap;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
     .kid-sub {
-      margin: 0.5rem 0 0;
-      font-size: clamp(1rem, 3.4vw, 1.15rem);
+      margin: 0.65rem 0 0;
+      padding: 0.5rem 0.75rem;
+      font-size: clamp(0.98rem, 3.2vw, 1.12rem);
       font-weight: 800;
-      color: #db2777;
+      color: #831843;
       letter-spacing: 0.02em;
+      line-height: 1.45;
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 16px;
+      border: 2px solid rgba(244, 114, 182, 0.45);
+      box-shadow: 0 4px 0 rgba(251, 207, 232, 0.6);
+    }
+    .hdr-chips {
+      list-style: none;
+      margin: 0.55rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .hdr-chips li {
+      margin: 0;
+      padding: 0.28rem 0.65rem;
+      font-size: clamp(0.72rem, 2.5vw, 0.82rem);
+      font-weight: 900;
+      color: #0c4a6e;
+      background: linear-gradient(180deg, #e0f2fe 0%, #cffafe 100%);
+      border: 2px solid #38bdf8;
+      border-radius: 999px;
+      box-shadow: 0 2px 0 #bae6fd;
+    }
+    .site-header-wave {
+      display: block;
+      width: 100%;
+      height: clamp(2.25rem, 8vw, 3rem);
+      margin-top: 0.15rem;
+      color: var(--cream);
+    }
+    .site-header-wave path {
+      fill: currentColor;
     }
     .kid-hero {
       padding: 0.85rem 1rem 1.1rem;
@@ -728,9 +875,50 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.7.0</span></h1>
-    <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！✨</p>
+  <header class="site-header">
+    <div class="site-header-sky" aria-hidden="true"></div>
+    <div class="site-header-float site-header-float--l" aria-hidden="true">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" width="120" height="100">
+        <ellipse cx="60" cy="88" rx="52" ry="10" fill="#bbf7d0" opacity="0.7"/>
+        <path d="M20 78 L35 42 L48 55 L62 28 L78 48 L95 35 L102 78 Z" fill="#34d399" stroke="#047857" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M28 78 L40 50 L52 62 L65 40 L80 58 L98 45 L100 78 Z" fill="#6ee7b7" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="48" y="22" width="24" height="18" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+        <polygon points="60,12 68,22 52,22" fill="#f87171" stroke="#b91c1c" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="site-header-float site-header-float--r" aria-hidden="true">
+      <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" width="120" height="110">
+        <circle cx="78" cy="32" r="22" fill="#fde047" stroke="#ca8a04" stroke-width="2.5"/>
+        <path d="M78 18 L82 28 L92 28 L84 34 L88 44 L78 38 L68 44 L72 34 L64 28 L74 28 Z" fill="#fff" opacity="0.95"/>
+        <path d="M12 58 L38 52 L48 38 L58 50 L88 44 L98 54 L102 68 L18 72 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="46" cy="48" r="5" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+        <path d="M8 68 Q40 52 72 60 T118 62" fill="none" stroke="#bae6fd" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="site-header-content">
+      <p class="site-header-eyebrow">
+        <span class="eyebrow-star" aria-hidden="true">★</span>
+        韓國江原道・親子冒險地圖
+        <span class="eyebrow-star" aria-hidden="true">★</span>
+      </p>
+      <h1 class="site-title">
+        <span class="site-title-brand"><span class="brand-emoji" aria-hidden="true">🧭</span>豆豆皮皮 Family Trip</span>
+        <span class="site-title-core">
+          <span class="site-title-line1">江原道</span>
+          <span class="site-title-line2">五日遊</span>
+        </span>
+        <span class="ver" id="versionBadge">網頁版 1.8.0</span>
+      </h1>
+      <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
+      <ul class="hdr-chips" aria-label="行程重點">
+        <li>6/30 – 7/4</li>
+        <li>桃園 TPE ⇄ 仁川 ICN</li>
+        <li>長榮航空 BR</li>
+      </ul>
+    </div>
+    <svg class="site-header-wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C200,10 400,70 600,38 C800,8 1000,72 1200,42 L1200,80 L0,80 Z" />
+    </svg>
   </header>
 
   <div class="kid-hero">
@@ -1291,7 +1479,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.7.0";
+      var VERSION = "1.8.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
