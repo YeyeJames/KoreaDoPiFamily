@@ -409,6 +409,69 @@
       font-size: var(--fs-small);
       color: var(--ink);
     }
+    .stay-card {
+      margin: 0 0 0.85rem;
+      padding: 0.75rem;
+      background: linear-gradient(180deg, #fff8fc 0%, #fff 55%);
+      border: 2px solid #fce7f3;
+      border-radius: 14px;
+    }
+    .stay-card-top {
+      display: flex;
+      flex-direction: row;
+      gap: 0.65rem;
+      align-items: stretch;
+      margin-bottom: 0.55rem;
+    }
+    @media (max-width: 420px) {
+      .stay-card-top { flex-direction: column; }
+      .stay-toon { max-height: 5.5rem; width: 100% !important; }
+    }
+    .stay-photo {
+      flex: 1;
+      min-width: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #fbcfe8;
+    }
+    .stay-photo img {
+      width: 100%;
+      height: 9.5rem;
+      object-fit: cover;
+      display: block;
+    }
+    .stay-toon {
+      width: 5.25rem;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: linear-gradient(160deg, #d1fae5, #e0f2fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem;
+      border: 2px dashed #6ee7b7;
+    }
+    .stay-toon svg { width: 100%; height: auto; max-height: 7rem; display: block; }
+    .stay-desc {
+      margin: 0 0 0.45rem;
+      font-size: var(--fs-small);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .stay-src {
+      margin: 0 0 0.5rem;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+    .stay-bullets {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: var(--fs-small);
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+    .stay-bullets li { margin: 0.3rem 0; }
     code { font-size: 0.92em; background: var(--cream-deep); padding: 0.1em 0.35em; border-radius: 4px; }
 
     #sec-todo { scroll-margin-top: 4.85rem; }
@@ -458,7 +521,7 @@
 </head>
 <body>
   <header>
-    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.5.0</span></h1>
+    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.6.0</span></h1>
     <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！✨</p>
   </header>
 
@@ -673,6 +736,22 @@
               </button>
               <div class="fold-panel">
                 <p class="fold-lead">入住 6/30 → 退房 7/1（京畿道河南市）</p>
+                <div class="stay-card">
+                  <div class="stay-card-top">
+                    <div class="stay-photo">
+                      <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="飯店客房示意" width="360" height="240" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="stay-toon" aria-hidden="true">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="35" width="64" height="58" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><rect x="28" y="48" width="14" height="12" rx="1" fill="#93c5fd" stroke="#2563eb" stroke-width="1"/><rect x="58" y="48" width="14" height="12" rx="1" fill="#93c5fd" stroke="#2563eb" stroke-width="1"/><rect x="42" y="68" width="16" height="25" rx="1" fill="#fca5a5" stroke="#dc2626" stroke-width="1"/><polygon points="50,12 78,38 22,38" fill="#fecaca" stroke="#e11d48" stroke-width="2"/><circle cx="72" cy="22" r="8" fill="#fde047"/><rect x="36" y="24" width="10" height="12" rx="1" fill="#fbbf24" stroke="#b45309" stroke-width="1"/></svg>
+                    </div>
+                  </div>
+                  <p class="stay-desc"><strong>河南 Aloha</strong>（하남 알로하호텔）在首爾近郊的<strong>京畿道河南市</strong>，不少旅客分享：離 <strong>Starfield Hanam</strong> 大型商場不遠，逛街吃飯方便；房內常有電視、冰箱等設備，並提供 <strong>Wi‑Fi、停車</strong>。綜合 Trip.com、HotelsCombined 等公開評價約落在 <strong>7.5～8.3 分</strong>段（僅供參考）。</p>
+                  <p class="stay-src">公開資訊彙整自 Trip.com、HotelsCombined、飯店官網等；下方照片為<strong>同類飯店客房示意</strong>（Unsplash），非該飯店實拍。</p>
+                  <ul class="stay-bullets">
+                    <li>我們訂兩間 <strong>Superior Double</strong> 相鄰房，方便爸爸媽媽照顧豆豆、皮皮。</li>
+                    <li>第一天玩完 Starfield 江南後，開車回河南休息剛好。</li>
+                  </ul>
+                </div>
                 <dl class="info">
                   <dt>韓文</dt>
                   <dd>하남 알로하호텔</dd>
@@ -724,6 +803,22 @@
               </button>
               <div class="fold-panel">
                 <p class="fold-lead">入住 7/1 → 退房 7/2（江原道春川）</p>
+                <div class="stay-card">
+                  <div class="stay-card-top">
+                    <div class="stay-photo">
+                      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="繽紛親子飯店房間示意" width="360" height="240" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="stay-toon" style="background:linear-gradient(160deg,#fef3c7,#fecdd3);border-color:#f472b6" aria-hidden="true">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="45" width="56" height="50" rx="3" fill="#fecdd3" stroke="#db2777" stroke-width="2"/><rect x="12" y="58" width="18" height="38" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><rect x="70" y="54" width="18" height="42" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><polygon points="50,8 68,38 32,38" fill="#fde047" stroke="#ca8a04" stroke-width="2"/><rect x="40" y="28" width="20" height="18" fill="#fef08a"/><rect x="30" y="62" width="10" height="10" rx="1" fill="#ef4444"/><rect x="60" y="62" width="10" height="10" rx="1" fill="#3b82f6"/></svg>
+                    </div>
+                  </div>
+                  <p class="stay-desc"><strong>LEGOLAND Korea Resort Hotel</strong>（레고랜드 코리아 리조트）在<strong>春川</strong>樂高樂園旁，是園區配套的<strong>主題度假飯店</strong>。依 <a href="https://legoland.kr/" target="_blank" rel="noopener">LEGOLAND Korea 官網</a> 與公開介紹：客房多為積木／英雄風佈置，常有<strong>兒童遊戲或活動空間</strong>、<strong>早餐餐廳</strong>；園區與飯店消費多為<strong>無現金</strong>（信用卡／手機支付）。園區與商標歸權利人所有，網頁僅作行程說明。</p>
+                  <p class="stay-src">飯店外觀與房間以現場為準；照片為<strong>彩色親子房型示意</strong>（Unsplash），非官方宣傳照。</p>
+                  <ul class="stay-bullets">
+                    <li>豆豆、皮皮可能住到<strong>忍者／海盜／王國</strong>其中一種主題（訂房時寫<strong>隨機</strong>）。</li>
+                    <li>住這裡可以<strong>早點進樂園</strong>玩，晚上回房休息超近！</li>
+                  </ul>
+                </div>
                 <dl class="info">
                   <dt>韓文</dt>
                   <dd>레고랜드 코리아 리조트</dd>
@@ -776,6 +871,22 @@
               </button>
               <div class="fold-panel">
                 <p class="fold-lead">入住 7/2 → 退房 7/4（共兩晚）</p>
+                <div class="stay-card">
+                  <div class="stay-card-top">
+                    <div class="stay-photo">
+                      <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=75" alt="海景公寓式套房示意" width="360" height="240" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="stay-toon" style="background:linear-gradient(160deg,#bae6fd,#e0f2fe);border-color:#38bdf8" aria-hidden="true">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M8 78 Q25 55 50 58 Q75 52 92 78 L92 95 L8 95 Z" fill="#7dd3fc" stroke="#0284c7" stroke-width="2"/><path d="M8 82 Q30 68 50 72 Q72 66 92 82" fill="none" stroke="#fff" stroke-width="2" opacity="0.7"/><rect x="28" y="22" width="44" height="52" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/><rect x="34" y="30" width="12" height="10" fill="#7dd3fc"/><rect x="54" y="30" width="12" height="10" fill="#7dd3fc"/><rect x="34" y="46" width="12" height="10" fill="#7dd3fc"/><rect x="54" y="46" width="12" height="10" fill="#7dd3fc"/><circle cx="78" cy="18" r="12" fill="#fde047" stroke="#eab308" stroke-width="2"/></svg>
+                    </div>
+                  </div>
+                  <p class="stay-desc"><strong>Cassia Sokcho</strong>（카시아 속초）在束草<strong>大浦港</strong>一帶，屬雅高集團 <strong>Cassia</strong> 品牌——風格接近<strong>公寓式酒店</strong>，常有客廳、雙臥與簡易廚房空間，適合<strong>家庭連住數晚</strong>，可簡單開伙或洗衣（依房型與現場規定）。步行可感受漁港與海岸氛圍。品牌介紹可見 <a href="https://all.accor.com/brands/cassia.en.shtml" target="_blank" rel="noopener">Accor — Cassia</a>。</p>
+                  <p class="stay-src">房內格局與海景視野以現場為準；照片為<strong>明亮套房／客廳示意</strong>（Unsplash），非飯店實拍。</p>
+                  <ul class="stay-bullets">
+                    <li>我們訂 <strong>Two Bedroom Suite</strong> 一套，兩晚慢慢玩束草。</li>
+                    <li>附近有<strong>海景與美食</strong>，豆豆、皮皮可以沙灘散步、吃海鮮（行程再安排）。</li>
+                  </ul>
+                </div>
                 <dl class="info">
                   <dt>韓文</dt>
                   <dd>카시아 속초</dd>
@@ -905,7 +1016,7 @@
 
   <footer>
     <p style="margin:0 0 0.5rem;font-weight:800;color:#831843">豆豆、皮皮，旅途平安！</p>
-    <p style="margin:0;font-size:0.85rem">主題照片來自 <a href="https://unsplash.com/?utm_source=koreado_pi_family&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>（免費授權，攝影師作品）。卡通大頭、韓國地圖與城堡圖為網頁自製插畫。</p>
+    <p style="margin:0;font-size:0.85rem">主題與住宿<strong>示意照片</strong>來自 <a href="https://unsplash.com/?utm_source=koreado_pi_family&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>（免費授權）。卡通大頭、地圖、城堡與飯店小圖為網頁自製插畫。住宿文字依官網與訂房平台<strong>公開說明</strong>整理，非商業代言。</p>
     <p style="margin:0.5rem 0 0;font-size:0.8rem;opacity:0.9">江原道五日遊 · <code>index.html</code></p>
   </footer>
 
@@ -913,7 +1024,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.5.0";
+      var VERSION = "1.6.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
