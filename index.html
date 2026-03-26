@@ -517,11 +517,219 @@
 
     ul.plain { margin: 0.35rem 0 0; padding-left: 1.2rem; }
     ul.plain li { margin: 0.35rem 0; }
+
+    /* 卡通大機票 */
+    .tickets-board {
+      padding: 1rem max(0.85rem, env(safe-area-inset-left)) 1.25rem max(0.85rem, env(safe-area-inset-right));
+      background: linear-gradient(180deg, #fff0f8 0%, #e0f7fa 45%, #fff8e7 100%);
+      border-top: 2px dashed rgba(244, 114, 182, 0.45);
+      border-bottom: 2px dashed rgba(56, 189, 248, 0.45);
+    }
+    .tickets-board-title {
+      margin: 0 0 0.85rem;
+      text-align: center;
+      font-size: clamp(1.25rem, 4.5vw, 1.65rem);
+      font-weight: 900;
+      color: #9d174d;
+      letter-spacing: 0.04em;
+      text-shadow: 2px 2px 0 #fce7f3;
+    }
+    .tickets-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 720px) {
+      .tickets-row {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+        max-width: 52rem;
+      }
+      .cartoon-ticket { flex: 1; min-width: 0; max-width: none; }
+    }
+    .cartoon-ticket {
+      position: relative;
+      border-radius: 22px;
+      padding: 0.85rem 1rem 1rem;
+      border: 4px dashed #fff;
+      box-shadow:
+        0 8px 0 rgba(190, 24, 93, 0.12),
+        0 12px 28px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+    }
+    .cartoon-ticket--out {
+      background: linear-gradient(165deg, #dbeafe 0%, #fef3c7 40%, #fff 100%);
+      transform: rotate(-1.2deg);
+      outline: 3px solid #38bdf8;
+    }
+    .cartoon-ticket--in {
+      background: linear-gradient(195deg, #fce7f3 0%, #e9d5ff 35%, #fff 100%);
+      transform: rotate(1.2deg);
+      outline: 3px solid #e879a9;
+    }
+    .cartoon-ticket .ticket-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image: radial-gradient(circle, #fbbf24 2px, transparent 3px);
+      background-size: 28px 28px;
+    }
+    .ticket-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-airline {
+      font-size: clamp(0.95rem, 3vw, 1.1rem);
+      font-weight: 900;
+      color: #0c4a6e;
+    }
+    .cartoon-ticket--in .ticket-airline { color: #831843; }
+    .ticket-br {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 900;
+      background: #fff;
+      padding: 0.15rem 0.55rem;
+      border-radius: 12px;
+      border: 3px solid #0ea5e9;
+      color: #0369a1;
+      line-height: 1;
+    }
+    .cartoon-ticket--in .ticket-br {
+      border-color: #db2777;
+      color: #9d174d;
+    }
+    .ticket-route {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      margin: 0.35rem 0 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-city {
+      text-align: center;
+      flex: 1;
+      min-width: 0;
+    }
+    .ticket-iata {
+      display: block;
+      font-size: clamp(2.75rem, 14vw, 4.25rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #0369a1;
+      text-shadow: 3px 3px 0 #bae6fd;
+    }
+    .cartoon-ticket--in .ticket-iata {
+      color: #9d174d;
+      text-shadow: 3px 3px 0 #fbcfe8;
+    }
+    .ticket-cityname {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: clamp(1rem, 3.2vw, 1.2rem);
+      font-weight: 800;
+      color: #334155;
+    }
+    .ticket-plane-wrap {
+      flex-shrink: 0;
+      width: clamp(3rem, 14vw, 4.5rem);
+      height: clamp(3rem, 14vw, 4.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 50%;
+      border: 3px solid #f472b6;
+      box-shadow: 0 4px 0 #fbcfe8;
+    }
+    .ticket-plane-wrap svg {
+      width: 72%;
+      height: 72%;
+    }
+    .ticket-date-big {
+      margin: 0.35rem 0 0.25rem;
+      text-align: center;
+      font-size: clamp(1.35rem, 5.5vw, 2rem);
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-tag {
+      margin: 0 0 0.5rem;
+      text-align: center;
+      font-size: clamp(1.05rem, 3.8vw, 1.35rem);
+      font-weight: 900;
+      color: #be185d;
+      position: relative;
+      z-index: 1;
+    }
+    .cartoon-ticket--in .ticket-tag { color: #0369a1; }
+    .ticket-perf {
+      height: 14px;
+      margin: 0.4rem -1rem 0.55rem;
+      background: radial-gradient(circle at 50% 50%, transparent 5px, #fff 6px);
+      background-size: 14px 14px;
+      background-repeat: repeat-x;
+      opacity: 0.85;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-barcode {
+      height: 3rem;
+      border-radius: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        #1e293b 0 3px,
+        transparent 3px 7px,
+        #1e293b 7px 9px,
+        transparent 9px 14px
+      );
+      margin: 0 0 0.45rem;
+      border: 2px solid #334155;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-fine {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      text-align: center;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+    .ticket-pax {
+      margin: 0.35rem 0 0;
+      padding: 0.45rem 0.5rem;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #475569;
+      text-align: center;
+      line-height: 1.45;
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.6.0</span></h1>
+    <h1>江原道五日遊 <span class="ver" id="versionBadge">網頁版 1.7.0</span></h1>
     <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！✨</p>
   </header>
 
@@ -600,6 +808,65 @@
       </figure>
     </div>
   </div>
+
+  <section class="tickets-board" id="our-flights" aria-label="去程與回程機票">
+    <h2 class="tickets-board-title">我們的機票　超～大～張！✈️</h2>
+    <div class="tickets-row">
+      <article class="cartoon-ticket cartoon-ticket--out" aria-label="去程機票：桃園飛仁川">
+        <div class="ticket-stars" aria-hidden="true"></div>
+        <header class="ticket-top">
+          <span class="ticket-airline">EVA AIR 長榮航空</span>
+          <span class="ticket-br">BR</span>
+        </header>
+        <div class="ticket-route">
+          <div class="ticket-city">
+            <span class="ticket-iata">TPE</span>
+            <span class="ticket-cityname">台灣桃園</span>
+          </div>
+          <div class="ticket-plane-wrap" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 36 L28 32 L38 14 L44 14 L40 32 L52 30 L54 34 L38 38 L34 52 L28 52 L30 38 Z" fill="#0ea5e9" stroke="#0369a1" stroke-width="2" stroke-linejoin="round"/><circle cx="46" cy="22" r="4" fill="#fde047"/></svg>
+          </div>
+          <div class="ticket-city">
+            <span class="ticket-iata">ICN</span>
+            <span class="ticket-cityname">韓國仁川</span>
+          </div>
+        </div>
+        <p class="ticket-date-big">2026 / 06 / 30</p>
+        <p class="ticket-tag">去程・出發去韓國玩！</p>
+        <div class="ticket-perf" aria-hidden="true"></div>
+        <div class="ticket-barcode" aria-hidden="true"></div>
+        <p class="ticket-pax">乘客：爸爸、媽媽、豆豆、皮皮（報到用護照英文名）</p>
+        <p class="ticket-fine">卡通示意非實際登機證；航班與時間以長榮航空為準。</p>
+      </article>
+
+      <article class="cartoon-ticket cartoon-ticket--in" aria-label="回程機票：仁川飛桃園">
+        <div class="ticket-stars" aria-hidden="true"></div>
+        <header class="ticket-top">
+          <span class="ticket-airline">EVA AIR 長榮航空</span>
+          <span class="ticket-br">BR</span>
+        </header>
+        <div class="ticket-route">
+          <div class="ticket-city">
+            <span class="ticket-iata">ICN</span>
+            <span class="ticket-cityname">韓國仁川</span>
+          </div>
+          <div class="ticket-plane-wrap" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 36 L28 32 L38 14 L44 14 L40 32 L52 30 L54 34 L38 38 L34 52 L28 52 L30 38 Z" fill="#ec4899" stroke="#9d174d" stroke-width="2" stroke-linejoin="round"/><circle cx="46" cy="22" r="4" fill="#fde047"/></svg>
+          </div>
+          <div class="ticket-city">
+            <span class="ticket-iata">TPE</span>
+            <span class="ticket-cityname">台灣桃園</span>
+          </div>
+        </div>
+        <p class="ticket-date-big">2026 / 07 / 04</p>
+        <p class="ticket-tag">回程・飛回家抱抱！</p>
+        <div class="ticket-perf" aria-hidden="true"></div>
+        <div class="ticket-barcode" aria-hidden="true"></div>
+        <p class="ticket-pax">乘客：爸爸、媽媽、豆豆、皮皮（報到用護照英文名）</p>
+        <p class="ticket-fine">卡通示意非實際登機證；航班與時間以長榮航空為準。</p>
+      </article>
+    </div>
+  </section>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
     <a class="nav active" href="#day-630">6/30</a>
@@ -1024,7 +1291,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.6.0";
+      var VERSION = "1.7.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
