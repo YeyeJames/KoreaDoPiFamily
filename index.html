@@ -51,44 +51,9 @@
 
     .site-header {
       position: relative;
-      overflow: hidden;
-      padding: calc(0.85rem + env(safe-area-inset-top, 0)) 1rem 0;
+      padding: calc(0.85rem + env(safe-area-inset-top, 0)) 1rem 1rem;
       background: linear-gradient(165deg, #e0f2fe 0%, #fce7f3 38%, #fff8e7 72%, #fff 100%);
-      border-bottom: none;
-    }
-    .site-header-sky {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 120% 80% at 15% 20%, rgba(253, 224, 71, 0.35), transparent 50%),
-        radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 42%),
-        radial-gradient(circle at 8% 55%, rgba(186, 230, 253, 0.5), transparent 35%),
-        radial-gradient(circle at 92% 60%, rgba(251, 207, 232, 0.45), transparent 38%);
-    }
-    .site-header-float {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.92;
-      z-index: 0;
-    }
-    .site-header-float--l {
-      left: -0.25rem;
-      bottom: 2.25rem;
-      width: clamp(4.5rem, 22vw, 7rem);
-      height: auto;
-      filter: drop-shadow(2px 4px 0 rgba(255, 255, 255, 0.9));
-    }
-    .site-header-float--r {
-      right: -0.35rem;
-      top: 0.65rem;
-      width: clamp(4.75rem, 24vw, 7.5rem);
-      height: auto;
-      filter: drop-shadow(-2px 3px 0 rgba(255, 255, 255, 0.85));
-    }
-    @media (min-width: 520px) {
-      .site-header-float--l { left: 0.5rem; }
-      .site-header-float--r { right: 0.5rem; }
+      border-bottom: 1px solid var(--line);
     }
     .site-header-content {
       position: relative;
@@ -219,108 +184,18 @@
       border-radius: 999px;
       box-shadow: 0 2px 0 #bae6fd;
     }
-    .site-header-wave {
-      display: block;
-      width: 100%;
-      height: clamp(2.25rem, 8vw, 3rem);
-      margin-top: 0.15rem;
-      color: var(--cream);
-    }
-    .site-header-wave path {
-      fill: currentColor;
-    }
     .kid-hero {
-      padding: 0.85rem 1rem 1.1rem;
+      padding: 0.75rem 1rem 0.9rem;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 248, 252, 0.98) 100%);
       border-bottom: 2px dashed var(--line);
     }
     .kid-hero .hero-lead {
-      margin: 0 0 0.75rem;
+      margin: 0;
       text-align: center;
       font-size: var(--fs-small);
       font-weight: 700;
       color: var(--ink-muted);
       line-height: 1.5;
-    }
-    .family-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.65rem 1rem;
-      margin-bottom: 1rem;
-    }
-    .family-member {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-      min-width: 4.5rem;
-    }
-    .face-wrap {
-      width: 4.5rem;
-      height: 4.5rem;
-      border-radius: 50%;
-      background: var(--white);
-      border: 3px solid #fbcfe8;
-      box-shadow: 0 4px 14px rgba(219, 39, 119, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .face-svg {
-      width: 88%;
-      height: 88%;
-      display: block;
-    }
-    .family-label {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: #9d174d;
-    }
-    .theme-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.55rem;
-    }
-    @media (min-width: 380px) {
-      .theme-gallery { grid-template-columns: repeat(3, 1fr); }
-    }
-    .theme-card {
-      margin: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid #fce7f3;
-      background: var(--white);
-      box-shadow: 0 3px 12px rgba(190, 24, 93, 0.06);
-    }
-    .theme-card figcaption {
-      padding: 0.35rem 0.45rem 0.5rem;
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-align: center;
-      color: #831843;
-      line-height: 1.25;
-    }
-    .theme-card img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      vertical-align: middle;
-    }
-    .theme-card .theme-svg-wrap {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(145deg, var(--mint), #e0f2fe);
-      padding: 0.5rem;
-    }
-    .theme-card .theme-svg {
-      width: 78%;
-      height: auto;
-      max-height: 88%;
     }
     .tl-head-deco {
       display: flex;
@@ -692,237 +567,10 @@
 
     ul.plain { margin: 0.35rem 0 0; padding-left: 1.2rem; }
     ul.plain li { margin: 0.35rem 0; }
-
-    /* 卡通大機票 */
-    .tickets-board {
-      padding: 1rem max(0.85rem, env(safe-area-inset-left)) 1.25rem max(0.85rem, env(safe-area-inset-right));
-      background: linear-gradient(180deg, #fff0f8 0%, #e0f7fa 45%, #fff8e7 100%);
-      border-top: 2px dashed rgba(244, 114, 182, 0.45);
-      border-bottom: 2px dashed rgba(56, 189, 248, 0.45);
-    }
-    .tickets-board-title {
-      margin: 0 0 0.85rem;
-      text-align: center;
-      font-size: clamp(1.25rem, 4.5vw, 1.65rem);
-      font-weight: 900;
-      color: #9d174d;
-      letter-spacing: 0.04em;
-      text-shadow: 2px 2px 0 #fce7f3;
-    }
-    .tickets-row {
-      display: flex;
-      flex-direction: column;
-      gap: 1.15rem;
-      max-width: 38rem;
-      margin: 0 auto;
-    }
-    @media (min-width: 720px) {
-      .tickets-row {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 1rem;
-        max-width: 52rem;
-      }
-      .cartoon-ticket { flex: 1; min-width: 0; max-width: none; }
-    }
-    .cartoon-ticket {
-      position: relative;
-      border-radius: 22px;
-      padding: 0.85rem 1rem 1rem;
-      border: 4px dashed #fff;
-      box-shadow:
-        0 8px 0 rgba(190, 24, 93, 0.12),
-        0 12px 28px rgba(15, 23, 42, 0.12);
-      overflow: hidden;
-    }
-    .cartoon-ticket--out {
-      background: linear-gradient(165deg, #dbeafe 0%, #fef3c7 40%, #fff 100%);
-      transform: rotate(-1.2deg);
-      outline: 3px solid #38bdf8;
-    }
-    .cartoon-ticket--in {
-      background: linear-gradient(195deg, #fce7f3 0%, #e9d5ff 35%, #fff 100%);
-      transform: rotate(1.2deg);
-      outline: 3px solid #e879a9;
-    }
-    .cartoon-ticket .ticket-stars {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.35;
-      background-image: radial-gradient(circle, #fbbf24 2px, transparent 3px);
-      background-size: 28px 28px;
-    }
-    .ticket-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-airline {
-      font-size: clamp(0.95rem, 3vw, 1.1rem);
-      font-weight: 900;
-      color: #0c4a6e;
-    }
-    .cartoon-ticket--in .ticket-airline { color: #831843; }
-    .ticket-br {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      font-weight: 900;
-      background: #fff;
-      padding: 0.15rem 0.55rem;
-      border-radius: 12px;
-      border: 3px solid #0ea5e9;
-      color: #0369a1;
-      line-height: 1;
-    }
-    .cartoon-ticket--in .ticket-br {
-      border-color: #db2777;
-      color: #9d174d;
-    }
-    .ticket-route {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.35rem;
-      margin: 0.35rem 0 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-city {
-      text-align: center;
-      flex: 1;
-      min-width: 0;
-    }
-    .ticket-iata {
-      display: block;
-      font-size: clamp(2.75rem, 14vw, 4.25rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: #0369a1;
-      text-shadow: 3px 3px 0 #bae6fd;
-    }
-    .cartoon-ticket--in .ticket-iata {
-      color: #9d174d;
-      text-shadow: 3px 3px 0 #fbcfe8;
-    }
-    .ticket-cityname {
-      display: block;
-      margin-top: 0.2rem;
-      font-size: clamp(1rem, 3.2vw, 1.2rem);
-      font-weight: 800;
-      color: #334155;
-    }
-    .ticket-plane-wrap {
-      flex-shrink: 0;
-      width: clamp(3rem, 14vw, 4.5rem);
-      height: clamp(3rem, 14vw, 4.5rem);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      border-radius: 50%;
-      border: 3px solid #f472b6;
-      box-shadow: 0 4px 0 #fbcfe8;
-    }
-    .ticket-plane-wrap svg {
-      width: 72%;
-      height: 72%;
-    }
-    .ticket-date-big {
-      margin: 0.35rem 0 0.25rem;
-      text-align: center;
-      font-size: clamp(1.35rem, 5.5vw, 2rem);
-      font-weight: 900;
-      color: #0f172a;
-      letter-spacing: 0.06em;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-tag {
-      margin: 0 0 0.5rem;
-      text-align: center;
-      font-size: clamp(1.05rem, 3.8vw, 1.35rem);
-      font-weight: 900;
-      color: #be185d;
-      position: relative;
-      z-index: 1;
-    }
-    .cartoon-ticket--in .ticket-tag { color: #0369a1; }
-    .ticket-perf {
-      height: 14px;
-      margin: 0.4rem -1rem 0.55rem;
-      background: radial-gradient(circle at 50% 50%, transparent 5px, #fff 6px);
-      background-size: 14px 14px;
-      background-repeat: repeat-x;
-      opacity: 0.85;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-barcode {
-      height: 3rem;
-      border-radius: 8px;
-      background: repeating-linear-gradient(
-        90deg,
-        #1e293b 0 3px,
-        transparent 3px 7px,
-        #1e293b 7px 9px,
-        transparent 9px 14px
-      );
-      margin: 0 0 0.45rem;
-      border: 2px solid #334155;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-fine {
-      margin: 0;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #64748b;
-      text-align: center;
-      line-height: 1.4;
-      position: relative;
-      z-index: 1;
-    }
-    .ticket-pax {
-      margin: 0.35rem 0 0;
-      padding: 0.45rem 0.5rem;
-      background: rgba(255, 255, 255, 0.75);
-      border-radius: 12px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: #475569;
-      text-align: center;
-      line-height: 1.45;
-      position: relative;
-      z-index: 1;
-    }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="site-header-sky" aria-hidden="true"></div>
-    <div class="site-header-float site-header-float--l" aria-hidden="true">
-      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" width="120" height="100">
-        <ellipse cx="60" cy="88" rx="52" ry="10" fill="#bbf7d0" opacity="0.7"/>
-        <path d="M20 78 L35 42 L48 55 L62 28 L78 48 L95 35 L102 78 Z" fill="#34d399" stroke="#047857" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M28 78 L40 50 L52 62 L65 40 L80 58 L98 45 L100 78 Z" fill="#6ee7b7" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
-        <rect x="48" y="22" width="24" height="18" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
-        <polygon points="60,12 68,22 52,22" fill="#f87171" stroke="#b91c1c" stroke-width="1.5" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="site-header-float site-header-float--r" aria-hidden="true">
-      <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" width="120" height="110">
-        <circle cx="78" cy="32" r="22" fill="#fde047" stroke="#ca8a04" stroke-width="2.5"/>
-        <path d="M78 18 L82 28 L92 28 L84 34 L88 44 L78 38 L68 44 L72 34 L64 28 L74 28 Z" fill="#fff" opacity="0.95"/>
-        <path d="M12 58 L38 52 L48 38 L58 50 L88 44 L98 54 L102 68 L18 72 Z" fill="#38bdf8" stroke="#0369a1" stroke-width="2" stroke-linejoin="round"/>
-        <circle cx="46" cy="48" r="5" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
-        <path d="M8 68 Q40 52 72 60 T118 62" fill="none" stroke="#bae6fd" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
-      </svg>
-    </div>
     <div class="site-header-content">
       <p class="site-header-eyebrow">
         <span class="eyebrow-star" aria-hidden="true">★</span>
@@ -935,7 +583,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.11.0</span>
+        <span class="ver" id="versionBadge">網頁版 1.12.0</span>
       </h1>
       <p class="kid-sub">爸爸、媽媽、豆豆（哥哥）、皮皮（弟弟）一起出發！讓我們一起收集回憶吧 ✨</p>
       <ul class="hdr-chips" aria-label="行程重點">
@@ -944,145 +592,11 @@
         <li>長榮航空 BR</li>
       </ul>
     </div>
-    <svg class="site-header-wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C200,10 400,70 600,38 C800,8 1000,72 1200,42 L1200,80 L0,80 Z" />
-    </svg>
   </header>
 
   <div class="kid-hero">
     <p class="hero-lead">這一頁是為豆豆和皮皮準備的冒險地圖，點日期可以看當天要做什麼喔～</p>
-    <div class="family-row">
-      <div class="family-member">
-        <div class="face-wrap" aria-hidden="true">
-          <svg class="face-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="55" r="32" fill="#ffcdb2"/><ellipse cx="50" cy="36" rx="28" ry="20" fill="#5d4037"/><rect x="30" y="48" width="40" height="14" rx="3" fill="none" stroke="#422" stroke-width="2.2"/><circle cx="40" cy="54" r="3.5" fill="#333"/><circle cx="60" cy="54" r="3.5" fill="#333"/><path d="M40 68 Q50 76 60 68" fill="none" stroke="#c4716a" stroke-width="2.2" stroke-linecap="round"/></svg>
-        </div>
-        <span class="family-label">爸爸</span>
-      </div>
-      <div class="family-member">
-        <div class="face-wrap" aria-hidden="true">
-          <svg class="face-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M22 50 Q28 14 50 14 Q72 14 78 50 Q78 86 50 90 Q22 84 22 50" fill="#6d4c41"/><circle cx="50" cy="58" r="30" fill="#ffcdb2"/><circle cx="40" cy="56" r="4" fill="#333"/><circle cx="60" cy="56" r="4" fill="#333"/><ellipse cx="38" cy="63" rx="5" ry="3" fill="#ffb6c1"/><ellipse cx="62" cy="63" rx="5" ry="3" fill="#ffb6c1"/><path d="M42 72 Q50 78 58 72" fill="none" stroke="#c4716a" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <span class="family-label">媽媽</span>
-      </div>
-      <div class="family-member">
-        <div class="face-wrap" aria-hidden="true">
-          <svg class="face-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 10 L58 26 L74 20 L66 38 L84 42 L68 52 L50 44 L32 52 L16 42 L34 38 L26 20 L42 26 Z" fill="#4a3728"/><circle cx="50" cy="60" r="28" fill="#ffcdb2"/><circle cx="40" cy="58" r="5" fill="#333"/><circle cx="60" cy="58" r="5" fill="#333"/><path d="M42 72 Q50 80 58 72" fill="none" stroke="#c4716a" stroke-width="2.5" stroke-linecap="round"/></svg>
-        </div>
-        <span class="family-label">豆豆</span>
-      </div>
-      <div class="family-member">
-        <div class="face-wrap" aria-hidden="true">
-          <svg class="face-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="36" rx="26" ry="18" fill="#8d6e63"/><circle cx="50" cy="62" r="34" fill="#ffcdb2"/><circle cx="40" cy="60" r="6" fill="#333"/><circle cx="60" cy="60" r="6" fill="#333"/><ellipse cx="36" cy="68" rx="7" ry="4" fill="#ffb6c1"/><ellipse cx="64" cy="68" rx="7" ry="4" fill="#ffb6c1"/><path d="M38 76 Q50 88 62 76" fill="none" stroke="#c4716a" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <span class="family-label">皮皮</span>
-      </div>
-    </div>
-    <div class="theme-gallery">
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>飛機</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>護照・旅行</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1519641471654-76ce3d3ad6c6?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>租車休旅</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <div class="theme-svg-wrap">
-          <svg class="theme-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M52 6 L70 38 L74 78 L62 118 L42 128 L24 98 L18 58 L28 28 Z" fill="#a7f3d0" stroke="#059669" stroke-width="2.2" stroke-linejoin="round"/><circle cx="48" cy="52" r="5" fill="#f472b6"/><circle cx="58" cy="92" r="6" fill="#fbbf24"/></svg>
-        </div>
-        <figcaption>韓國地圖（卡通）</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1567449303078-57ad995bd329?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>百貨公司</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>彩色積木</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <div class="theme-svg-wrap" style="background:linear-gradient(145deg,#fef3c7,#fecaca)">
-          <svg class="theme-svg" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="26" y="42" width="48" height="44" rx="2" fill="#fecdd3" stroke="#e11d48" stroke-width="2"/><rect x="12" y="56" width="20" height="34" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><rect x="68" y="52" width="20" height="38" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/><polygon points="50,6 64,34 36,34" fill="#fde047" stroke="#ca8a04" stroke-width="2"/><rect x="43" y="24" width="14" height="22" fill="#fef9c3"/></svg>
-        </div>
-        <figcaption>樂園城堡風</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>樂高樂園感</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>山景</figcaption>
-      </figure>
-      <figure class="theme-card">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=360&amp;q=75" alt="" width="180" height="180" loading="lazy" decoding="async" />
-        <figcaption>海景</figcaption>
-      </figure>
-    </div>
   </div>
-
-  <section class="tickets-board" id="our-flights" aria-label="去程與回程機票">
-    <h2 class="tickets-board-title">我們的機票　超～大～張！✈️</h2>
-    <div class="tickets-row">
-      <article class="cartoon-ticket cartoon-ticket--out" aria-label="去程機票：桃園飛仁川">
-        <div class="ticket-stars" aria-hidden="true"></div>
-        <header class="ticket-top">
-          <span class="ticket-airline">EVA AIR 長榮航空</span>
-          <span class="ticket-br">BR</span>
-        </header>
-        <div class="ticket-route">
-          <div class="ticket-city">
-            <span class="ticket-iata">TPE</span>
-            <span class="ticket-cityname">台灣桃園</span>
-          </div>
-          <div class="ticket-plane-wrap" aria-hidden="true">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 36 L28 32 L38 14 L44 14 L40 32 L52 30 L54 34 L38 38 L34 52 L28 52 L30 38 Z" fill="#0ea5e9" stroke="#0369a1" stroke-width="2" stroke-linejoin="round"/><circle cx="46" cy="22" r="4" fill="#fde047"/></svg>
-          </div>
-          <div class="ticket-city">
-            <span class="ticket-iata">ICN</span>
-            <span class="ticket-cityname">韓國仁川</span>
-          </div>
-        </div>
-        <p class="ticket-date-big">2026 / 06 / 30</p>
-        <p class="ticket-tag">去程・出發去韓國玩！</p>
-        <div class="ticket-perf" aria-hidden="true"></div>
-        <div class="ticket-barcode" aria-hidden="true"></div>
-        <p class="ticket-pax">乘客：爸爸、媽媽、豆豆、皮皮（報到用護照英文名）</p>
-        <p class="ticket-fine">卡通示意非實際登機證；航班與時間以長榮航空為準。</p>
-      </article>
-
-      <article class="cartoon-ticket cartoon-ticket--in" aria-label="回程機票：仁川飛桃園">
-        <div class="ticket-stars" aria-hidden="true"></div>
-        <header class="ticket-top">
-          <span class="ticket-airline">EVA AIR 長榮航空</span>
-          <span class="ticket-br">BR</span>
-        </header>
-        <div class="ticket-route">
-          <div class="ticket-city">
-            <span class="ticket-iata">ICN</span>
-            <span class="ticket-cityname">韓國仁川</span>
-          </div>
-          <div class="ticket-plane-wrap" aria-hidden="true">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 36 L28 32 L38 14 L44 14 L40 32 L52 30 L54 34 L38 38 L34 52 L28 52 L30 38 Z" fill="#ec4899" stroke="#9d174d" stroke-width="2" stroke-linejoin="round"/><circle cx="46" cy="22" r="4" fill="#fde047"/></svg>
-          </div>
-          <div class="ticket-city">
-            <span class="ticket-iata">TPE</span>
-            <span class="ticket-cityname">台灣桃園</span>
-          </div>
-        </div>
-        <p class="ticket-date-big">2026 / 07 / 04</p>
-        <p class="ticket-tag">回程・飛回家抱抱！</p>
-        <div class="ticket-perf" aria-hidden="true"></div>
-        <div class="ticket-barcode" aria-hidden="true"></div>
-        <p class="ticket-pax">乘客：爸爸、媽媽、豆豆、皮皮（報到用護照英文名）</p>
-        <p class="ticket-fine">卡通示意非實際登機證；航班與時間以長榮航空為準。</p>
-      </article>
-    </div>
-  </section>
 
   <div class="toolbar" id="mainNav" role="navigation" aria-label="日期與待辦">
     <a class="nav active" href="#day-630">6/30</a>
@@ -1547,7 +1061,7 @@
 
   <footer>
     <p style="margin:0 0 0.5rem;font-weight:800;color:#831843">豆豆、皮皮，旅途平安！</p>
-    <p style="margin:0;font-size:0.85rem">主題與住宿<strong>示意照片</strong>來自 <a href="https://unsplash.com/?utm_source=koreado_pi_family&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>（免費授權）。卡通大頭、地圖、城堡與飯店小圖為網頁自製插畫。住宿文字依官網與訂房平台<strong>公開說明</strong>整理，非商業代言。</p>
+    <p style="margin:0;font-size:0.85rem">行程內住宿區塊<strong>示意照片</strong>來自 <a href="https://unsplash.com/?utm_source=koreado_pi_family&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>（免費授權）；飯店旁小圖為網頁自製插畫。住宿文字依官網與訂房平台<strong>公開說明</strong>整理，非商業代言。</p>
     <p style="margin:0.5rem 0 0;font-size:0.8rem;opacity:0.9">江原道五日遊 · <code>index.html</code></p>
   </footer>
 
@@ -1555,7 +1069,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.11.0";
+      var VERSION = "1.12.0";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
