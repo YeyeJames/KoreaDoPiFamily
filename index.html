@@ -179,8 +179,9 @@
       margin-bottom: 0.45rem;
     }
     .tl-head-deco img {
-      width: 2.15rem;
-      height: 2.15rem;
+      width: 2.45rem;
+      height: 2.45rem;
+      flex-shrink: 0;
       border-radius: 10px;
       object-fit: cover;
       border: 2px solid #fff;
@@ -189,11 +190,12 @@
     .tl-head-deco img.tl-deco-cartoon {
       object-fit: contain;
       background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-      padding: 0.12rem;
+      padding: 0.18rem;
     }
     .tl-head-deco .tl-svg {
-      width: 2.15rem;
-      height: 2.15rem;
+      width: 2.45rem;
+      height: 2.45rem;
+      flex-shrink: 0;
       border-radius: 10px;
       background: var(--white);
       border: 2px solid #fce7f3;
@@ -485,6 +487,9 @@
       text-align: center;
       line-height: 1.4;
     }
+    .axis-follow-block {
+      margin-top: 0.55rem;
+    }
     @media (max-width: 520px) {
       ul.time-axis .ta-detail .inline-axis-row {
         grid-template-columns: 1fr;
@@ -532,7 +537,7 @@
           <span class="site-title-line1">江原道</span>
           <span class="site-title-line2">五日遊</span>
         </span>
-        <span class="ver" id="versionBadge">網頁版 1.15.22</span>
+        <span class="ver" id="versionBadge">網頁版 1.15.23</span>
       </h1>
       <ul class="hdr-chips" aria-label="行程重點">
         <li>6/30 – 7/4</li>
@@ -557,11 +562,11 @@
         <!-- 6/30 -->
         <div class="tl-item open" id="day-630">
           <button type="button" class="tl-head" aria-expanded="true">
-            <!-- 6/30 標題圖：FAA 公版 Q 版飛機 (PD) | Twemoji 🚙🏬 (CC BY 4.0, Twitter) via Wikimedia Commons -->
+            <!-- 6/30 標題圖：Twemoji ✈️🚙🏬 SVG（CC BY 4.0）via Wikimedia Commons，同系列較一致、易顯示 -->
             <div class="tl-head-deco" aria-hidden="true">
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/FAA_cartoon_plane.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Twemoji12_1f699.svg/240px-Twemoji12_1f699.svg.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
-              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Twemoji12_1f3ec.svg/240px-Twemoji12_1f3ec.svg.png" alt="" width="36" height="36" loading="lazy" decoding="async" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Twemoji12_2708.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Twemoji12_1f699.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
+              <img class="tl-deco-cartoon" src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Twemoji12_1f3ec.svg" alt="" width="40" height="40" loading="eager" decoding="async" fetchpriority="high" />
             </div>
             <div class="tl-head-row">
               <span class="tl-date">6/30（一）</span>
@@ -966,7 +971,7 @@
 
   <script>
     (function () {
-      var VERSION = "1.15.22";
+      var VERSION = "1.15.23";
       var badge = document.getElementById("versionBadge");
       if (badge) badge.textContent = "網頁版 " + VERSION;
 
